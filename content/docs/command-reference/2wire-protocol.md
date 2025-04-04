@@ -10,7 +10,7 @@ title = '2-Wire Protocol'
 -   **Pull-up resistors:** always required (2K - 10K ohms)
 -   **Maximum voltage:** 5volts
 
-2-wire is a generic 8bit protocol mode with a bidirectional data line (SDA) and a clock line (SCL). 2-wire can be used to interface with SLE4442 smart cards, half-duple SPI devices and other 2 wire busses that don't use a full I2C implementation.
+2-wire is a generic 8bit protocol mode with a bidirectional data line (SDA) and a clock line (SCL). 2-wire can be used to interface with SLE4442 smart cards, half-duplex SPI devices and other 2 wire busses that don't use a full I2C implementation.
 
 ## Connections
 
