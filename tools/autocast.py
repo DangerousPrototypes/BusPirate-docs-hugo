@@ -190,11 +190,11 @@ def main():
                 if send_queue and current_time >= delay_time:
                     char = send_queue.popleft()
                     serial_conn.write(char.encode("utf-8"))
-                    delay_time = current_time + random.uniform(0.1, 0.4)
+                    delay_time = current_time + random.uniform(0.05, 0.2)
 
                     if not send_queue:
                         state = STATE_EXECUTE_COMMAND
-                        delay_time = current_time + 1.0
+                        delay_time = current_time + .5
 
             elif(state == STATE_EXECUTE_COMMAND):
                 # Check if the newline is scheduled and the time has passed
@@ -211,7 +211,7 @@ def main():
                     if args.debug:
                         print(f"Prompt detected")
                     state = STATE_ADDITIONAL_DELAY
-                    delay_time = current_time + 1.0
+                    delay_time = current_time + .5
                     if args.debug:
                         print(f"Scheduled additional delay of 1 second after prompt detection.")
             
