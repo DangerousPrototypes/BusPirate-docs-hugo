@@ -42,10 +42,10 @@ A card detect switch is connected to an LED on the top of the board. _CARD LED_ 
 
 | Switch | Normal | IO pin | Description |
 |--------|-----|-----|-------------|
-| VCC   | VOUT | IO0 | Connect VCC pin of the socket to VOUT or IO0|
-| GND   | GND | IO1 | Connect GND pin of the socket to GND or IO1|
+| VCC   | VOUT | IO4 | Connect VCC pin of the socket to VOUT or IO4|
+| GND   | GND | IO5 | Connect GND pin of the socket to GND or IO5|
 
-SW1 and SW2 along the side of the adapter select the power (VCC) and ground (GND) connection to the card socket. For normal use select VCC:VOUT and GND:GND. Found a non-standard pinout? Flip the switches to connect the VCC and GND pins of the socket to Bus Pirate pins IO0 and IO1.
+SW1 and SW2 along the side of the adapter select the power (VCC) and ground (GND) connection to the card socket. For normal use select VCC:VOUT and GND:GND. Found a non-standard pinout? Flip the switches to connect the VCC and GND pins of the socket to Bus Pirate pins IO4 and IO5.
 
 ## Pin Connections
 
