@@ -1580,6 +1580,17 @@ device transmit pin (TX).
 
 {{< termfile source="static/snippets/cmdref-mode-uart-bridge.html" >}}
 
+{{< term >}}
+<span style="color:#96cb59">UART></span> bridge
+<span style="color:#d7af00">UART bridge. Press Bus Pirate button to exit.</span>
+$GPGSV,1,1,00*79
+$BDGSV,1,1,00*68
+$GNRMC,,V,,,,,,,,,,M*4E
+$GNVTG,,,,,,,,,M*2D
+$GNZDA,,,,,,*56
+$GPTXT,01,01,01,ANTENNA OK*35
+{{</term>}}
+
 Transparent UART ```bridge```. Bidirectional UART pass-through to interact with other serial devices from inside the Bus Pirate terminal. Press the Bus Pirate button to exit. 
 
 {{% alert context="info" %}}

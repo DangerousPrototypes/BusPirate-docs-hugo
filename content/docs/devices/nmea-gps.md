@@ -3,18 +3,26 @@ weight = 40903
 title = 'NMEA GPS module UART'
 +++  
 
-![](images/docs/demo/gps-map-screenshot.png)
+{{< openstreetmap
+x="43.002813"
+y="-87.904311"
+bbox="-87.90812373161317,43.000064904318585,-87.9004740715027,43.005596484095825" >}}
 
-GPS modules generally communicate over TTL serial and can be used to add GPS functionality to a variety of projects.
+<br/>
+
+GNSS is a system of global navigation using signals from satellite constellations such as GPS (USA), GALILEO (EU), BeiDuo (China), and GLONASS (Russia). There are also some smaller regional GNSS constellations covering only Japan (QZSS) and India (IRNSS). While technically the system is called GNSS, it's more commonly referred to as GPS, after the original and most widely known system.
+
+Depending on your GPS module age and type, it may track only one satellite constellation, a few or all of them. GPS modules generally output position data over a TTL serial UART. Some modules also accept configuration commands over the same UART, but they vary widely by manufacturer and model.
 
 {{% alert context="info" %}}    
-These GPS devices use a protocol called [`NMEA`](https://en.wikipedia.org/wiki/NMEA_0183), consisting of ASCII "sentences" (messages).  The Bus Pirate can decode these sentences and can be used to test or explore a GPS module.
+GPS devices use a protocol called [`NMEA`](https://en.wikipedia.org/wiki/NMEA_0183), consisting of ASCII "sentences" (messages).  The Bus Pirate can decode these sentences and can be used to test or explore a GPS module.
 {{% /alert %}}
 
 {{% readfile "/_common/_footer/_footer-cart.md" %}}
 
 ## Connections
-GPS modules will usually have at least 4 connections: `VCC`, `GND`, `TX`, and `RX`.  The actual location and order of these connections can vary from module to module and should be verified by the datasheet or silkscreen labels on the board.  The GPS module may have additional signals, but only the4 listed above are needed.
+
+GPS modules usually have at least 4 connections: `VCC`, `GND`, `TX`, and `RX`.  The actual location and order of these connections can vary from module to module and should be verified by the datasheet or silkscreen labels on the board.  The GPS module may have additional signals, but only the 4 listed above are needed.
 
 ![](images/docs/demo/gps-rear.png)
 ![](images/docs/demo/gps-front.png)
@@ -34,8 +42,7 @@ The connections can be made with the Bus Pirate cable, clips, or "dupont" style 
 
 {{< asciicast src="/screencast/gps-cast.json" poster="npt:0:22"  idleTimeLimit=2 >}}
 
-## Setup 
-#### Mode setup
+## Mode setup
 
 {{< termfile source="static/snippets/gps-command-setup.html" >}}
 
@@ -50,50 +57,101 @@ If current data format is not 9600/8/n/1:
 - `1` to select **1** stop bit
 - `1` to select **None** hardware flow control
 - `1` to select **Non-inverted** signal levels
-#### Power supply setup
-Most GPS modules operate at `3.3Volts`, but check the datasheet to be sure.
+
+{{% alert context="info" %}}
+9600 baud has been by far the most common default speed for GPS modules, but some newer modules may default to higher speeds such as 38400, 115200 or 460800 baud.  If you see garbled data when you start the `gps` command, try changing the baud rate to match your module's default.
+{{% /alert %}}
+
+## Power supply setup
 
 {{< termfile source="static/snippets/gps-power-setup.html" >}}
+
+Most GPS modules operate at `3.3Volts`, but check the datasheet to be sure.
 
 - `W 3.3` to turn on the Bus Pirate's power supply and set to **3.3** volts.  Current limit will be set to the default **300** milliamp current limit.
 
 The power supply voltage and actual output current will be displayed
 
 {{% alert context="warning" %}}
-
 Verify actual voltage requirements to your GPS module and replace the `3.3` with the appropriate value!
 {{% /alert %}}
+
+
+## Raw NMEA output
+{{< term >}}
+<span style="color:#96cb59">UART></span> {
+
+UART OPEN (ASYNC READ)
+UART> '$' 0x24'G' 0x47'N' 0x4E'G' 0x47'G' 0x47'A' 0x41',' 0x2C',' 0x2C',' 
+0x2C',' 0x2C',' 0x2C',' 0x2C'0' 0x30',' 0x2C'0' 0x30'0' 0x30',' 0x2C'2' 
+0x32'5' 0x35'.' 0x2E'5' 0x35',' 0x2C',' 0x2C',' 0x2C',' 0x2C',' 0x2C',' 0x2C'*'
+}
+
+UART CLOSE
+<span style="color:#96cb59">UART></span>
+{{</term>}}
+
+The ```{``` command opens the UART and NMEA sentences should begin to stream in. The ASCII character are shown next to their HEX values.  The ```}``` command closes the UART.
+
+## Bridge command
+
+{{< term >}}
+<span style="color:#96cb59">UART></span> bridge
+<span style="color:#d7af00">UART bridge. Press Bus Pirate button to exit.</span>
+$GPGSV,1,1,00*79
+$BDGSV,1,1,00*68
+$GNRMC,,V,,,,,,,,,,M*4E
+$GNVTG,,,,,,,,,M*2D
+$GNZDA,,,,,,*56
+$GPTXT,01,01,01,ANTENNA OK*35
+{{</term>}}
+
+The Bus Pirate can also become a simple USB to serial converter using the [**bridge**]({{< relref "/docs/command-reference/#bridge-usb-to-serial-bridge" >}}) command. Data from the GPS will display in plain text. Press the Bus Pirate button to exit the bridge command.
+
+Bridge can be used to connect a GPS module to a PC application like [PyGPSClient and GnssToolKit3]({{< relref "/docs/devices/nmea-gps/#gps-resources">}}) for more advanced analysis. Close the Bus Pirate terminal first, then connect the software to the same serial port used by the terminal.
 
 ## GPS command
 
 {{< termfile source="static/snippets/gps-gps-command.html" >}} 
 
-The [**gps**]({{< relref "/docs/command-reference/#gps-decoding-gps-nmea-sentences" >}}) command will set the UART to begin receiving sentences from the GPS module.  The Bus Pirate will decode the sentences as they come in.
+The [**gps**]({{< relref "/docs/command-reference/#gps-decoding-gps-nmea-sentences" >}}) command will set the UART to begin receiving sentences from the GPS module.  The Bus Pirate will show the raw sentences and attempt to decode them. 
 
-Press any key to stop the command.
+Press any key to exit the gps command and return to the UART prompt.
 
 ## NMEA sentence definitions
-#### General
+
+```
+$GPTXT,01,01,01,ANTENNA OK*35
+```
+
+<br/>
+
 NMEA sentences begin with a `$` dollar sign, have one or more comma-delimited fields, and end with an optional checksum and `\r\n` return/newline combination.
 
-There is repetition of data in the various sentences; many GPS modules can be configured to only transmit the desired sentences.  This is not intended to be a full primer on NMEA, but to define common sentences and how the Bus Pirate's `gps` command decodes them.
-
-Partial list of NMEA sentences (this is not a comprehensive list)
 |Message|Description|
 |--|--|
 |$GPGGA|Time, position, and fix type data|
-|$GPGLL|Latitude, longtitude, UTC time of position fix and status|
+|$GPGLL|Latitude, longitude, UTC time of position fix and status|
 |$GPGSA|GPS receiver mode, satellites used, DOP values|
 |$GPGSV|Number of satellites in view, satellite ID, elevation, azimuth, and SNR|
 |$GPRMC|Time, date, position, course, and speed data|
 |$GPVTG|Course and speed relative to ground|
 
-Format and example of each of those messages is given below
-#### $GPGGA
-Example `GGA` message from capture above:
+Partial list of NMEA sentences. Format and example of each message is given below.
+
+{{% alert context="info" %}}
+There is repetition of data in the various sentences, many GPS modules can be configured to only transmit the desired sentences.  This is not intended to be a full primer on NMEA, but to define common sentences and how the Bus Pirate's `gps` command decodes them.
+{{% /alert %}}
+
+### $GPGGA
+
 ```
 $GPGGA,141458.00,4300.16985,N,08754.25421,W,1,06,1.38,190.7,M,-34.1,M,,*61
 ```
+<br/>
+
+Example `GGA` message from capture above.
+
 |Name|Value|Description|
 |--|--|--|
 |Message ID|$GPGGA|GGA header|
@@ -118,11 +176,17 @@ The Bus Pirate's `gps` command decodes this to display the fix quality:
 ```
 $xxGGA: fix quality: 1
 ```
-#### $GPGLL
-Example `GLL` message from capture above:
+
+### $GPGLL
+
 ```
 $GPGLL,4300.16985,N,08754.25421,W,141458.00,A,A*7C
 ```
+
+<br/>
+
+Example `GLL` message from capture above.
+
 |Name|Value|Description|
 |--|--|--|
 |Message ID|$GPGLL|GLL header|
@@ -136,25 +200,30 @@ $GPGLL,4300.16985,N,08754.25421,W,141458.00,A,A*7C
 |Checksum|0x7C|checksum is the XOR of lower 7-bits of characters between `$` and `*`|
 |`<CR><LF>`| |End of message terminator|
 
-The BUs Pirate's gps command does not decode this message
+The Bus Pirate's gps command does not decode this message
 
-#### $GPGSA
-Example `GGSA` message from capture above:
+### $GPGSA
+
 ```
 $GPGSA,A,3,23,10,24,32,18,15,,,,,,,2.62,1.38,2.23*07
 ```
+
+<br/>
+
+Example `GGSA` message from capture above.
+
 |Name|Value|Description|
 |--|--|--|
 |Message ID|$GPGSA|GSA header|
 |Mode 1|A|A=automatic (auto switch between 2D/3D), M=manual (forced to 2D or 3D)|
 |Mode 2|3|1=fix not available, 2=2D( < 4 satellites), 3=3D( > 3 satellites)|
-|Satellite used|23|Satallite ID on channel 1|
-|Satellite used|10|Satallite ID on channel 2|
-|Satellite used|24|Satallite ID on channel 3|
-|Satellite used|32|Satallite ID on channel 4|
-|Satellite used|18|Satallite ID on channel 5|
-|Satellite used|15|Satallite ID on channel 6|
-|Satellite used|(several NULLS)|Satallite ID on channel 7-12|
+|Satellite used|23|Satellite ID on channel 1|
+|Satellite used|10|Satellite ID on channel 2|
+|Satellite used|24|Satellite ID on channel 3|
+|Satellite used|32|Satellite ID on channel 4|
+|Satellite used|18|Satellite ID on channel 5|
+|Satellite used|15|Satellite ID on channel 6|
+|Satellite used|(several NULLS)|Satellite ID on channel 7-12|
 |PDOP|2.62|Position dilution of precision|
 |HDOP|1.38|Horizontal dilution of precision|
 |VDOP|2.23|Vertical dilution of precision|
@@ -163,11 +232,16 @@ $GPGSA,A,3,23,10,24,32,18,15,,,,,,,2.62,1.38,2.23*07
 
 The Bus Pirate's gps command does not decode this message
 
-#### $GPGSV
-Example `GGSV` message from capture above:
+### $GPGSV
+
 ```
 $GPGSV,3,1,09,02,03,324,,08,13,301,14,10,58,314,24,15,17,062,22*71
 ```
+
+<br/>
+
+Example `GGSV` message from capture above.
+
 |Name|Value|Description|
 |--|--|--|
 |Message ID|$GPGSV|GSV header|
@@ -203,11 +277,16 @@ $xxGSV: sat nr 10, elevation: 58, azimuth: 314, snr: 24 dbm
 $xxGSV: sat nr 15, elevation: 17, azimuth: 62, snr: 22 dbm
 ```
 
-#### $GPRMC
-Example `RMC` message from capture above:
+### $GPRMC
+
 ```
 $GPRMC,141458.00,A,4300.16985,N,08754.25421,W,1.481,,151025,,,A*6B
 ```
+
+<br/>
+
+Example `RMC` message from capture above.
+
 |Name|Value|Description|
 |--|--|--|
 |Message ID|$GPRMC|RMC header|
@@ -227,18 +306,29 @@ $GPRMC,141458.00,A,4300.16985,N,08754.25421,W,1.481,,151025,,,A*6B
 |`<CR><LF>`| |End of message terminator|
 
 The Bus Pirate's `gps` command decodes this to:
+
 ```
 $xxRMC: raw coordinates and speed: (430016985/100000,-875425421/100000) 1481/1000
 $xxRMC fixed-point coordinates and speed scaled to three decimal places: (4300170,-8754254) 1481
 $xxRMC floating point degree coordinates and speed: (43.002831,-87.904236) 1.481000
 ```
-*Note - GPS module was stationary when this reading was taken*
 
-#### $GPVTG
-Example `VTG` message from capture above:
+<br/>
+
+{{% alert context="info" %}}
+Note - GPS module was stationary when this reading was taken.
+{{% /alert %}}
+
+### $GPVTG
+
 ```
 $GPVTG,,T,,M,1.481,N,2.744,K,A*2A
 ```
+
+<br/>
+
+Example `VTG` message from capture above.
+
 |Name|Value|Description|
 |--|--|--|
 |Message ID|$GPVTG|VTG header|
@@ -268,7 +358,12 @@ The longitude/latitude data can be used to locate the GPS fix in [Open Street Ma
 
 The map for the coordinates (43.002813, -87.904311) in the samples above:
 
-{{< openstreetmap
-x="43.002813"
-y="-87.904311"
-bbox="-87.90812373161317,43.000064904318585,-87.9004740715027,43.005596484095825" >}}
+
+![](images/docs/demo/gps-map-screenshot.png)
+
+
+## GPS resources
+
+- [PyGPSClient](https://github.com/semuconsulting/PyGPSClient) - open source GPS client with a graphical interface. Can display NMEA sentences, parse GPS data, and plot position on a map.
+- [GnssToolKit3](https://github.com/zxcwhale/GnssToolKit3-binaries/releases) - open source GPS data viewer and analyzer with a graphical interface. Can display NMEA sentences, parse GPS data, and plot satellite position on a map.
+- [GPSd](https://gitlab.com/gpsd/gpsd/-/tree/master/drivers?ref_type=heads) - open source GPS daemon with a large list of supported GPS modules and their NMEA sentences. Good reference for manufacturer specific module configuration.
