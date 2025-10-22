@@ -108,7 +108,9 @@ $GPTXT,01,01,01,ANTENNA OK*35
 
 The Bus Pirate can also become a simple USB to serial converter using the [**bridge**]({{< relref "/docs/command-reference/#bridge-usb-to-serial-bridge" >}}) command. Data from the GPS will display in plain text. Press the Bus Pirate button to exit the bridge command.
 
+{{% alert context="info" %}}
 Bridge can be used to connect a GPS module to a PC application like [PyGPSClient and GnssToolKit3]({{< relref "/docs/devices/nmea-gps/#gps-resources">}}) for more advanced analysis. Close the Bus Pirate terminal first, then connect the software to the same serial port used by the terminal.
+{{% /alert %}}
 
 ## GPS command
 

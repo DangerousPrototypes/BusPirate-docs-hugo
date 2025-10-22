@@ -7,7 +7,7 @@ title = 'DDR5 RAM SPD I2C Adapter'
 
 The DDR5 adapter plank makes it easy to read and write the SPD chip on DDR5 UDIMM and SODIMM computer memory modules. 
 
-Use the Bus Pirate [```ddr5``` command]({{< relref "/docs/devices/ddr5/#ddr5-command">}}) to read and write the SPD EEPROM on a DDR5 module, or follow the [DDR5 device demo]({{< relref "/docs/devices/ddr5/">}}) to learn about the technical details.
+Use the Bus Pirate [```ddr5``` command]({{< relref "/docs/command-reference/#ddr5-probe-read-write-unlock-ddr5-sdram-modules">}}) to read and write the SPD EEPROM on a DDR5 module, or follow the [DDR5 device demo]({{< relref "/docs/devices/ddr5/">}}) to learn about the technical details.
 
 DDR5 adapter plank features:
 - 288 pin DDR5 UDIMM socket for standard desktop memory modules
