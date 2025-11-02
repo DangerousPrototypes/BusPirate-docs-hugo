@@ -1239,6 +1239,23 @@ Read the current state of the data pin.
 "Bitwise" commands provide low-level control over the clock and data pins, allowing precise manipulation of their states. These commands are only available in specific modes, such as [2WIRE]({{% relref "/docs/command-reference/#2-wire" %}}) and [3WIRE]({{% relref "/docs/command-reference/#3-wire" %}}).
 {{% /alert %}}
 
+## Supported bus protocols
+
+| | | |
+|---|---|---|
+|HiZ|1WIRE|UART|
+|HDUART|I2C|SPI|
+|2WIRE|3WIRE|DIO|
+|LED|INFRARED|JTAG|
+
+The Bus Pirate supports a variety of bus protocols. Each protocol has its own set of commands and features. Select a protocol with the [```m``` command]({{% relref "/docs/command-reference/#m-set-bus-mode" %}}).
+
+Several protocols have sub modes such as LED and INFRARED.
+
+{{% alert context="info" %}}
+Always update to the latest firmware as protocols are frequently improved and new protocols added.
+{{% /alert %}}
+
 ## HiZ
 
 -   **Bus:** High impedance (HiZ)
