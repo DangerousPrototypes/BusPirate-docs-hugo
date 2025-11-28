@@ -369,3 +369,4 @@ The map for the coordinates (43.002813, -87.904311) in the samples above:
 - [PyGPSClient](https://github.com/semuconsulting/PyGPSClient) - open source GPS client with a graphical interface. Can display NMEA sentences, parse GPS data, and plot position on a map.
 - [GnssToolKit3](https://github.com/zxcwhale/GnssToolKit3-binaries/releases) - open source GPS data viewer and analyzer with a graphical interface. Can display NMEA sentences, parse GPS data, and plot satellite position on a map.
 - [GPSd](https://gitlab.com/gpsd/gpsd/-/tree/master/drivers?ref_type=heads) - open source GPS daemon with a large list of supported GPS modules and their NMEA sentences. Good reference for manufacturer specific module configuration.
+- [GPSBabel](https://www.gpsbabel.org/) - open source GPS data conversion software. Can convert NMEA data to various formats for use in mapping applications.

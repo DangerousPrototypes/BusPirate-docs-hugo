@@ -16,6 +16,7 @@ The Bus Pirate BPIO2 binmode is a [FlatBuffers](https://flatbuffers.dev/) interf
 Pre-compiled BPIO2 FlatBuffer "tooling" is available for [a bunch](https://github.com/DangerousPrototypes/BusPirate-BPIO2-flatbuffer-interface) of common languages. This means you can easily integrate the BPIO2 protocol into your projects without needing to write extensive parsing or serialization code.
 
 - [Python Library](#python-library) - A demonstration library for interacting with BPIO2 
+- [Rust crate](https://github.com/DangerousPrototypes/BusPirate-BPIO2-flatbuffer-interface/tree/main/rust) - A library for interacting with BPIO2 in Rust
 - [Debugging](#debugging) - Display BPIO2 debug information in the Bus Pirate terminal
 - [FlatBuffer Tooling Download](#flat-buffer-tooling-download) - Download precompiled FlatBuffer tooling for BPIO2
 - [Compile your own tooling](#compiling-your-own-tooling) - How to generate your own tooling from the BPIO2 schema
