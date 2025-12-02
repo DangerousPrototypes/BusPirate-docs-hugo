@@ -1,0 +1,8 @@
+[38;2;150;203;89mI2C>[0m&nbsp;W&nbsp;3.3
+[38;2;83;166;230m3.30[0mV[38;2;191;165;48m&nbsp;requested,&nbsp;closest&nbsp;value:&nbsp;[38;2;83;166;230m3.30[0mV
+[38;2;83;166;230m300.0[0mmA[38;2;191;165;48m&nbsp;requested,&nbsp;closest&nbsp;value:&nbsp;[38;2;83;166;230m300.0[0mmA
+
+[38;2;191;165;48mPower&nbsp;supply:[0mEnabled
+[38;2;191;165;48mVreg&nbsp;output:&nbsp;[38;2;83;166;230m3.3[0mV[38;2;191;165;48m,&nbsp;Vref/Vout&nbsp;pin:&nbsp;[38;2;83;166;230m3.3[0mV[38;2;191;165;48m,&nbsp;Current:&nbsp;[38;2;83;166;230m5.4[0mmA[38;2;191;165;48m
+[0m[0m
+[38;2;150;203;89mI2C>[0m&nbsp;

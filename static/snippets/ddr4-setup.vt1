@@ -1,0 +1,13 @@
+[38;2;150;203;89mHiZ>[0m&nbsp;m&nbsp;i2c
+
+[38;2;191;165;48mMode:[0m&nbsp;I2C
+[38;2;191;165;48mI2C&nbsp;speed[0m
+&nbsp;1kHz&nbsp;to&nbsp;1000kHz
+&nbsp;x.&nbsp;[38;2;191;165;48mExit[0m
+[38;2;150;203;89mkHz&nbsp;([0m400kHz*[38;2;150;203;89m)&nbsp;>[0m&nbsp;100
+[38;2;191;165;48mClock&nbsp;stretching[0m
+&nbsp;1.&nbsp;[38;2;191;165;48mOFF*[0m
+&nbsp;2.&nbsp;[38;2;191;165;48mON[0m
+&nbsp;x.&nbsp;[38;2;191;165;48mExit[0m
+[38;2;150;203;89mOFF&nbsp;([0m1[38;2;150;203;89m)&nbsp;>[0m&nbsp;1[0m
+[38;2;150;203;89mI2C>[0m&nbsp;

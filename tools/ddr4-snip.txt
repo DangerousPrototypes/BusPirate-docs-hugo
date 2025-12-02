@@ -1,0 +1,72 @@
+m hiz
+c
+3
+1
+x
+rm bpi2c.bp
+# ddr4-setup
+m i2c # m i2c - enter I2C mode
+100 # 100kHz I2C speed
+1 # Disable clock stretching
+# ddr4-w
+W 3.3 # W 3.3 - enable 5 volt power supply
+# stop
+a 2
+A 3
+# ddr4-p
+P # P - enable pull-up resistors
+# ddr4-scan
+scan # scan - scan for I2C devices
+# ddr4-page0 
+[0b01101100 0x00 0x00] # Select EEPROM page 0
+# ddr4-read-page
+[0xa0 0x00] [0xa1 r:256] # Read entire 256 byte page 0
+# ddr4-key-bytes
+[0xa0 0x00] [0xa1 r:4] # Read first 4 key bytes
+# ddr4-manuf-module-jedec
+[0b01101110 0x00 0x00] # Select EEPROM page 1
+[0xa0 0x40] [0xa1 r:2] # Read module manuf. JEDEC ID
+# ddr4-manuf-module-date
+[0xa0 0x43] [0xa1 r:2] # Read module manuf. date (Week/Year)
+# ddr4-manuf-module-serial
+[0xa0 0x45] [0xa1 r:4] # Read module serial number
+# stop
+o # Change output format to ASCII
+5
+# ddr4-manuf-module-part
+[0xa0 0x49] [0xa1 r:20] # Read module part number (ASCII)
+# stop
+o # Change output back to auto
+1
+# ddr4-manuf-dram-jedec
+[0xa0 0x5e][0xa1 r:2] # Read DRAM manuf. JEDEC ID
+# ddr4-manuf-specific-data
+[0xa0 0x61][0xa1 r:29] # Check manuf. specific data area
+# ddr4-protection-status
+[0b01100011 0x00 0x00][0b01101001 0x00 0x00][0b01101011 0x00 0x00][0b01100001 0x00 0x00] # Check write protection status of all 4 blocks
+# ddr4-reset-protection-fuses
+A 2 # Enable 9 volts to SDA0
+[0b01100110 0x00 0x00] # Reset protection fuses
+a 2 # Disable 9 volts to SDA0
+# stop
+> D:1000
+# ddr4-protection-status-disabled
+[0b01100011 0x00 0x00] # Check lock status of block 0
+# ddr4-set-protection-fuses
+A 2 # Enable 9 volts to SDA0
+[0b01100010 0x00 0x00] # Set protection block 0
+[0b01101000 0x00 0x00] # Set protection block 1
+a 2 # Disable 9 volts to SDA0
+# stop
+> D:1000
+# ddr4-read-row
+[0b01101110 0x00 0x00] # Change to page 1
+[0xa0 0xf0] # Set address pointer to 0xF0
+[0xa1 r:16] # Read 16 bytes from address 0xF0
+# ddr4-write-row
+[0xa0 0xf0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16] # Write 16 bytes to address 0xF0
+# ddr4-verify-row
+[0xa0 0xf0] # Set address pointer to 0xF0
+[0xa1 r:16] # Read 16 bytes from address 0xF0
+# stop
+[ 0xa0 0xf0 0x00:16] # cleanup row 

@@ -1,0 +1,19 @@
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;A&nbsp;2
+IO<span style="color:rgb(83,166,230)">2<span style="color:rgb(191,165,48)">&nbsp;set&nbsp;to</span></span>&nbsp;OUTPUT:&nbsp;<span style="color:rgb(83,166,230)">1</span>
+
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;[0b01100010&nbsp;0x00&nbsp;0x00]
+
+I2C&nbsp;START
+<span style="color:rgb(191,165,48)">TX:</span>&nbsp;0b<span style="color:rgb(83,166,230)">0110</span>0010&nbsp;ACK&nbsp;
+<span style="color:rgb(191,165,48)">TX:</span>&nbsp;0x<span style="color:rgb(83,166,230)">00</span>&nbsp;ACK&nbsp;0x<span style="color:rgb(83,166,230)">00</span>&nbsp;ACK&nbsp;
+I2C&nbsp;STOP
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;[0b01101000&nbsp;0x00&nbsp;0x00]
+
+I2C&nbsp;START
+<span style="color:rgb(191,165,48)">TX:</span>&nbsp;0b<span style="color:rgb(83,166,230)">0110</span>1000&nbsp;ACK&nbsp;
+<span style="color:rgb(191,165,48)">TX:</span>&nbsp;0x<span style="color:rgb(83,166,230)">00</span>&nbsp;ACK&nbsp;0x<span style="color:rgb(83,166,230)">00</span>&nbsp;ACK&nbsp;
+I2C&nbsp;STOP
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;a&nbsp;2
+IO<span style="color:rgb(83,166,230)">2<span style="color:rgb(191,165,48)">&nbsp;set&nbsp;to</span></span>&nbsp;OUTPUT:&nbsp;<span style="color:rgb(83,166,230)">0</span>
+
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;

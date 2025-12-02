@@ -90,7 +90,7 @@ The DDR5 HSDA and HSCL pins **must** be no more than 3.3 volts, but the DDR5 mod
 
 ![](/images/docs/demo/ddr5-plank-temp.jpg)
 
-Soldering wires directly to a DDR5 module will probably render it unusable. Get a spare socket or adapter from your favorite supplier. Alternatively, the DDR5 adapter plank makes it easy to work with DDR5 UDIMM and SODIMM modules:
+Soldering wires directly to a DDR5 module will probably render it unusable. Get a spare socket or adapter from your favorite supplier. Alternatively, the [DDR5 adapter plank]({{< relref "/docs/overview/ddr-ram-i2c-adapter/">}}) makes it easy to work with DDR5 UDIMM and SODIMM modules:
 - 288 pin DDR5 UDIMM socket for standard desktop memory modules
 - 262 pin DDR5 SODIMM socket for laptop memory modules
 - Accepts a single 5 volt power supply
@@ -168,10 +168,10 @@ Image source: ABLIC [S-34HTS08AB](https://www.ablic.com/en/doc/datasheet/dimm_se
 Let's see if we can find the I2C address with the I2C [address scan]({{< relref "/docs/command-reference/#scan-i2c-address-search">}}).
 - ```scan``` - Scan the I2C bus for devices
 
-The scanner found an I2C device at address 0x50 (0xA0 write, 0xA1 read). That's the SPD hub chip. The second device at 0x48 (0x90 write, 0x91 read) is the [PMIC (Power Management IC)]({{< relref "/docs/devices/ddr5/#power-management-ic">}}) that generates the voltages for the DDR5 memory chips. 
+The scanner found an I2C device at address 0x50 (0xA0 write, 0xA1 read). That's the SPD hub chip. The second device at 0x48 (0x90 write, 0x91 read) is the [PMIC (Power Management IC)]({{< relref "/docs/devices/ddr5/#power-management-ic">}}) that generates the vonltages for the DDR5 memory chips. 
 
 {{% alert context="info" %}} 
-If the scanner doesn't find the device, ensure the power supply is enabled ```W 5``` and the pull-up resistors are enabled ```P```. Also check that slide switches SW1 and SW2 select VOUT and GND respectively.
+If the scanner doesn't find the device, ensure the power supply is enabled ```W 5``` and the pull-up resistors are enabled ```P```. 
 {{% /alert %}}
 
 ## SPD Hub Memory Areas
@@ -583,7 +583,7 @@ If the Write Protection Bits are not correct, ensure that the module is in **off
 
 Before writing to the SPD hub non-volatile memory, make sure you have a [backup of the original data]({{< relref "/docs/devices/ddr5/#ddr5-command">}}). Better yet, only experiment with a module you don't care about.
 
-In this step we will read 16 bytes **before** writing to verify it is empty. If you see anything other then 0x00s then **ABSOLUTLY DO NOT WRITE TO THAT LOCATION**. It is likely that area is already programmed with some data, and writing to it will make the module unbootable or unusable.
+In this step we will read 16 bytes **before** writing to verify it is empty. If you see anything other than 0x00s then **ABSOLUTLY DO NOT WRITE TO THAT LOCATION**. It is likely that area is already programmed with some data, and writing to it will make the module unbootable or unusable.
 {{% /alert %}}
 
 {{< termfile source="static/snippets/ddr5-nvm-blank-check.html" >}}

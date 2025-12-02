@@ -1,0 +1,15 @@
+[38;2;150;203;89mI2C>[0m&nbsp;[0xa0&nbsp;0x49]&nbsp;[0xa1&nbsp;r:20]
+
+I2C&nbsp;START
+[38;2;191;165;48mTX:[0m&nbsp;0x[38;2;83;166;230mA0[0m&nbsp;ACK&nbsp;0x[38;2;83;166;230m49[0m&nbsp;ACK&nbsp;
+I2C&nbsp;STOP
+I2C&nbsp;START
+[38;2;191;165;48mTX:[0m&nbsp;0x[38;2;83;166;230mA1[0m&nbsp;ACK&nbsp;
+[38;2;191;165;48mRX:[0m&nbsp;'A'&nbsp;0x[38;2;83;166;230m41[0m&nbsp;ACK&nbsp;'C'&nbsp;0x[38;2;83;166;230m43[0m&nbsp;ACK&nbsp;'R'&nbsp;0x[38;2;83;166;230m52[0m&nbsp;ACK&nbsp;'2'&nbsp;0x[38;2;83;166;230m32[0m&nbsp;ACK&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;'4'&nbsp;0x[38;2;83;166;230m34[0m&nbsp;ACK&nbsp;'D'&nbsp;0x[38;2;83;166;230m44[0m&nbsp;ACK&nbsp;'4'&nbsp;0x[38;2;83;166;230m34[0m&nbsp;ACK&nbsp;'S'&nbsp;0x[38;2;83;166;230m53[0m&nbsp;ACK&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;'7'&nbsp;0x[38;2;83;166;230m37[0m&nbsp;ACK&nbsp;'S'&nbsp;0x[38;2;83;166;230m53[0m&nbsp;ACK&nbsp;'8'&nbsp;0x[38;2;83;166;230m38[0m&nbsp;ACK&nbsp;'M'&nbsp;0x[38;2;83;166;230m4D[0m&nbsp;ACK&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;'B'&nbsp;0x[38;2;83;166;230m42[0m&nbsp;ACK&nbsp;'-'&nbsp;0x[38;2;83;166;230m2D[0m&nbsp;ACK&nbsp;'4'&nbsp;0x[38;2;83;166;230m34[0m&nbsp;ACK&nbsp;'&nbsp;'&nbsp;0x[38;2;83;166;230m20[0m&nbsp;ACK&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;'&nbsp;0x[38;2;83;166;230m20[0m&nbsp;ACK&nbsp;'&nbsp;'&nbsp;0x[38;2;83;166;230m20[0m&nbsp;ACK&nbsp;'&nbsp;'&nbsp;0x[38;2;83;166;230m20[0m&nbsp;ACK&nbsp;'&nbsp;'&nbsp;0x[38;2;83;166;230m20[0m&nbsp;NACK&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+I2C&nbsp;STOP
+[38;2;150;203;89mI2C>[0m&nbsp;
