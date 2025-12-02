@@ -1,0 +1,35 @@
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;ddr4&nbsp;-h
+usage:
+<span style="color:rgb(191,165,48)">ddr4&nbsp;[probe|dump|write|read|verify|lock|unlock|crc]
+	[-f&nbsp;&ltfile>]&nbsp;[-b&nbsp;&ltblock&nbsp;number>|&ltbytes>]&nbsp;[-s&nbsp;&ltstart&nbsp;address>]&nbsp;[-h(elp)]
+<span style="color:rgb(191,165,48)">Probe&nbsp;DDR4&nbsp;SPD:</span></span>&nbsp;ddr4&nbsp;probe
+<span style="color:rgb(191,165,48)">Show&nbsp;DDR4&nbsp;SPD&nbsp;contents:</span>&nbsp;ddr4&nbsp;dump
+<span style="color:rgb(191,165,48)">Show&nbsp;32&nbsp;bytes&nbsp;starting&nbsp;at&nbsp;address&nbsp;0x50:</span>&nbsp;ddr4&nbsp;dump&nbsp;-s&nbsp;0x50&nbsp;-b&nbsp;32
+<span style="color:rgb(191,165,48)">Write&nbsp;SPD&nbsp;from&nbsp;file,&nbsp;verify:</span>&nbsp;ddr4&nbsp;write&nbsp;-f&nbsp;example.bin
+<span style="color:rgb(191,165,48)">Read&nbsp;SPD&nbsp;to&nbsp;file,&nbsp;verify:</span>&nbsp;ddr4&nbsp;read&nbsp;-f&nbsp;example.bin
+<span style="color:rgb(191,165,48)">Verify&nbsp;against&nbsp;file:</span>&nbsp;ddr4&nbsp;verify&nbsp;-f&nbsp;example.bin
+<span style="color:rgb(191,165,48)">Show&nbsp;block&nbsp;lock&nbsp;status:</span>&nbsp;ddr4&nbsp;lock&nbsp;-or-&nbsp;ddr4&nbsp;unlock
+<span style="color:rgb(191,165,48)">Lock&nbsp;a&nbsp;block&nbsp;0-3:</span>&nbsp;ddr4&nbsp;lock&nbsp;-b&nbsp;0
+<span style="color:rgb(191,165,48)">Unlock&nbsp;all&nbsp;blocks&nbsp;0-3:</span>&nbsp;ddr4&nbsp;unlock
+<span style="color:rgb(191,165,48)">Check/generate&nbsp;CRC&nbsp;for&nbsp;JEDEC&nbsp;bytes&nbsp;0-125:</span>&nbsp;ddr4&nbsp;crc&nbsp;-f&nbsp;example.bin
+<span style="color:rgb(191,165,48)">Patch/update&nbsp;CRC&nbsp;in&nbsp;file:</span>&nbsp;ddr4&nbsp;patch&nbsp;-f&nbsp;example.bin
+<span style="color:rgb(191,165,48)">DDR4&nbsp;write&nbsp;file&nbsp;**MUST**&nbsp;be&nbsp;exactly&nbsp;512&nbsp;bytes&nbsp;long
+</span>
+<span style="color:rgb(191,165,48)">read,&nbsp;write&nbsp;and&nbsp;probe&nbsp;DDR4&nbsp;SPD&nbsp;chips</span>
+<span style="color:rgb(150,203,89)">probe</span>	<span style="color:rgb(191,165,48)">Show&nbsp;DDR4&nbsp;SPD&nbsp;info</span>
+<span style="color:rgb(150,203,89)">dump</span>	<span style="color:rgb(191,165,48)">Display&nbsp;DDR4&nbsp;SPD&nbsp;contents</span>
+<span style="color:rgb(150,203,89)">write</span>	<span style="color:rgb(191,165,48)">Write&nbsp;file&nbsp;to&nbsp;DDR4&nbsp;SPD</span>
+<span style="color:rgb(150,203,89)">read</span>	<span style="color:rgb(191,165,48)">Read&nbsp;DDR4&nbsp;SPD&nbsp;to&nbsp;a&nbsp;file</span>
+<span style="color:rgb(150,203,89)">verify</span>	<span style="color:rgb(191,165,48)">Verify&nbsp;DDR4&nbsp;SPD&nbsp;against&nbsp;file</span>
+<span style="color:rgb(150,203,89)">lock</span>	<span style="color:rgb(191,165,48)">Lock&nbsp;DDR4&nbsp;SPD&nbsp;block&nbsp;(128&nbsp;bytes&nbsp;per&nbsp;block)</span>
+<span style="color:rgb(150,203,89)">unlock</span>	<span style="color:rgb(191,165,48)">Unlock&nbsp;all&nbsp;DDR4&nbsp;SPD&nbsp;blocks</span>
+<span style="color:rgb(150,203,89)">crc</span>	<span style="color:rgb(191,165,48)">Calculate/verify&nbsp;CRC&nbsp;of&nbsp;JEDEC&nbsp;bytes&nbsp;0-125&nbsp;in&nbsp;a&nbsp;file</span>
+<span style="color:rgb(150,203,89)">patch</span>	<span style="color:rgb(191,165,48)">Update&nbsp;correct&nbsp;CRC&nbsp;values&nbsp;for&nbsp;bytes&nbsp;0-125&nbsp;in&nbsp;a&nbsp;file</span>
+<span style="color:rgb(150,203,89)">-f</span>	<span style="color:rgb(191,165,48)">File&nbsp;flag.&nbsp;Specify&nbsp;a&nbsp;file&nbsp;to&nbsp;write,&nbsp;read,&nbsp;verify&nbsp;or&nbsp;check&nbsp;CRC</span>
+<span style="color:rgb(150,203,89)">-b</span>	<span style="color:rgb(191,165,48)">Block&nbsp;flag.&nbsp;Specify&nbsp;a&nbsp;DDR4&nbsp;SPD&nbsp;NVM&nbsp;block&nbsp;to&nbsp;lock&nbsp;(0&nbsp;-&nbsp;3)</span>
+<span style="color:rgb(150,203,89)">-s</span>	<span style="color:rgb(191,165,48)">Dump:&nbsp;start&nbsp;address</span>
+<span style="color:rgb(150,203,89)">-b</span>	<span style="color:rgb(191,165,48)">Dump:&nbsp;number&nbsp;of&nbsp;bytes</span>
+<span style="color:rgb(150,203,89)">-q</span>	<span style="color:rgb(191,165,48)">Dump:&nbsp;quiet&nbsp;mode,&nbsp;disable&nbsp;address&nbsp;and&nbsp;ASCII&nbsp;columns</span>
+<span style="color:rgb(150,203,89)">-h</span>	<span style="color:rgb(191,165,48)">help&nbsp;for&nbsp;Bus&nbsp;Pirate&nbsp;commands&nbsp;and&nbsp;modes</span>
+
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;

@@ -1,0 +1,7 @@
+[38;2;150;203;89mI2C>[0m&nbsp;ddr4&nbsp;patch&nbsp;-f&nbsp;ddr4.bin
+Checking&nbsp;CRC&nbsp;for&nbsp;bytes&nbsp;0-125,&nbsp;file:&nbsp;ddr4.bin
+Stored&nbsp;CRC&nbsp;(bytes&nbsp;126:127):&nbsp;0xCA&nbsp;0x7F
+Calculated&nbsp;CRC:&nbsp;0xCA&nbsp;0x7F
+CRC&nbsp;is&nbsp;already&nbsp;correct,&nbsp;no&nbsp;need&nbsp;to&nbsp;patch
+[0m
+[38;2;150;203;89mI2C>[0m&nbsp;

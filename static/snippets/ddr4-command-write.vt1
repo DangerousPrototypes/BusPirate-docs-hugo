@@ -1,0 +1,11 @@
+[38;2;150;203;89mI2C>[0m&nbsp;ddr4&nbsp;write&nbsp;-f&nbsp;ddr4.bin
+Write&nbsp;SPD&nbsp;from&nbsp;file:&nbsp;ddr4.bin
+CRC&nbsp;verify
+Stored&nbsp;CRC&nbsp;(bytes&nbsp;126:127):&nbsp;0xCA&nbsp;0x7F
+Calculated&nbsp;CRC:&nbsp;0xCA&nbsp;0x7F
+CRC&nbsp;okay&nbsp;:)
+Writing&nbsp;page:&nbsp;0,&nbsp;1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5,&nbsp;6,&nbsp;7,&nbsp;8,&nbsp;9,&nbsp;10,&nbsp;11,&nbsp;12,&nbsp;13,&nbsp;14,&nbsp;15,&nbsp;16,&nbsp;17,&nbsp;18,&nbsp;19,&nbsp;20,&nbsp;21,&nbsp;22,&nbsp;23,&nbsp;24,&nbsp;25,&nbsp;26,&nbsp;27,&nbsp;28,&nbsp;29,&nbsp;30,&nbsp;31,&nbsp;Done!
+Verify&nbsp;write
+Verify:&nbsp;OK
+Success&nbsp;:)[0m
+[38;2;150;203;89mI2C>[0m&nbsp;

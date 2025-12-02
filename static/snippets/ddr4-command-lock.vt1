@@ -1,0 +1,11 @@
+[38;2;150;203;89mI2C>[0m&nbsp;ddr4&nbsp;unlock
+Unlocking&nbsp;all&nbsp;blocks&nbsp;(0-3)...
+All&nbsp;blocks&nbsp;unlocked&nbsp;successfully
+Block&nbsp;|&nbsp;Status
+--------------
+&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;|&nbsp;Unlocked
+&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;|&nbsp;Unlocked
+&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;|&nbsp;Unlocked
+&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;|&nbsp;Unlocked
+[0m
+[38;2;150;203;89mI2C>[0m&nbsp;

@@ -1,0 +1,35 @@
+[38;2;150;203;89mI2C>[0m&nbsp;ddr4&nbsp;-h
+usage:
+[38;2;191;165;48mddr4&nbsp;[probe|dump|write|read|verify|lock|unlock|crc]
+	[-f&nbsp;&ltfile>]&nbsp;[-b&nbsp;&ltblock&nbsp;number>|&ltbytes>]&nbsp;[-s&nbsp;&ltstart&nbsp;address>]&nbsp;[-h(elp)]
+[38;2;191;165;48mProbe&nbsp;DDR4&nbsp;SPD:[0m&nbsp;ddr4&nbsp;probe
+[38;2;191;165;48mShow&nbsp;DDR4&nbsp;SPD&nbsp;contents:[0m&nbsp;ddr4&nbsp;dump
+[38;2;191;165;48mShow&nbsp;32&nbsp;bytes&nbsp;starting&nbsp;at&nbsp;address&nbsp;0x50:[0m&nbsp;ddr4&nbsp;dump&nbsp;-s&nbsp;0x50&nbsp;-b&nbsp;32
+[38;2;191;165;48mWrite&nbsp;SPD&nbsp;from&nbsp;file,&nbsp;verify:[0m&nbsp;ddr4&nbsp;write&nbsp;-f&nbsp;example.bin
+[38;2;191;165;48mRead&nbsp;SPD&nbsp;to&nbsp;file,&nbsp;verify:[0m&nbsp;ddr4&nbsp;read&nbsp;-f&nbsp;example.bin
+[38;2;191;165;48mVerify&nbsp;against&nbsp;file:[0m&nbsp;ddr4&nbsp;verify&nbsp;-f&nbsp;example.bin
+[38;2;191;165;48mShow&nbsp;block&nbsp;lock&nbsp;status:[0m&nbsp;ddr4&nbsp;lock&nbsp;-or-&nbsp;ddr4&nbsp;unlock
+[38;2;191;165;48mLock&nbsp;a&nbsp;block&nbsp;0-3:[0m&nbsp;ddr4&nbsp;lock&nbsp;-b&nbsp;0
+[38;2;191;165;48mUnlock&nbsp;all&nbsp;blocks&nbsp;0-3:[0m&nbsp;ddr4&nbsp;unlock
+[38;2;191;165;48mCheck/generate&nbsp;CRC&nbsp;for&nbsp;JEDEC&nbsp;bytes&nbsp;0-125:[0m&nbsp;ddr4&nbsp;crc&nbsp;-f&nbsp;example.bin
+[38;2;191;165;48mPatch/update&nbsp;CRC&nbsp;in&nbsp;file:[0m&nbsp;ddr4&nbsp;patch&nbsp;-f&nbsp;example.bin
+[38;2;191;165;48mDDR4&nbsp;write&nbsp;file&nbsp;**MUST**&nbsp;be&nbsp;exactly&nbsp;512&nbsp;bytes&nbsp;long
+[0m
+[38;2;191;165;48mread,&nbsp;write&nbsp;and&nbsp;probe&nbsp;DDR4&nbsp;SPD&nbsp;chips[0m
+[38;2;150;203;89mprobe[0m	[38;2;191;165;48mShow&nbsp;DDR4&nbsp;SPD&nbsp;info[0m
+[38;2;150;203;89mdump[0m	[38;2;191;165;48mDisplay&nbsp;DDR4&nbsp;SPD&nbsp;contents[0m
+[38;2;150;203;89mwrite[0m	[38;2;191;165;48mWrite&nbsp;file&nbsp;to&nbsp;DDR4&nbsp;SPD[0m
+[38;2;150;203;89mread[0m	[38;2;191;165;48mRead&nbsp;DDR4&nbsp;SPD&nbsp;to&nbsp;a&nbsp;file[0m
+[38;2;150;203;89mverify[0m	[38;2;191;165;48mVerify&nbsp;DDR4&nbsp;SPD&nbsp;against&nbsp;file[0m
+[38;2;150;203;89mlock[0m	[38;2;191;165;48mLock&nbsp;DDR4&nbsp;SPD&nbsp;block&nbsp;(128&nbsp;bytes&nbsp;per&nbsp;block)[0m
+[38;2;150;203;89munlock[0m	[38;2;191;165;48mUnlock&nbsp;all&nbsp;DDR4&nbsp;SPD&nbsp;blocks[0m
+[38;2;150;203;89mcrc[0m	[38;2;191;165;48mCalculate/verify&nbsp;CRC&nbsp;of&nbsp;JEDEC&nbsp;bytes&nbsp;0-125&nbsp;in&nbsp;a&nbsp;file[0m
+[38;2;150;203;89mpatch[0m	[38;2;191;165;48mUpdate&nbsp;correct&nbsp;CRC&nbsp;values&nbsp;for&nbsp;bytes&nbsp;0-125&nbsp;in&nbsp;a&nbsp;file[0m
+[38;2;150;203;89m-f[0m	[38;2;191;165;48mFile&nbsp;flag.&nbsp;Specify&nbsp;a&nbsp;file&nbsp;to&nbsp;write,&nbsp;read,&nbsp;verify&nbsp;or&nbsp;check&nbsp;CRC[0m
+[38;2;150;203;89m-b[0m	[38;2;191;165;48mBlock&nbsp;flag.&nbsp;Specify&nbsp;a&nbsp;DDR4&nbsp;SPD&nbsp;NVM&nbsp;block&nbsp;to&nbsp;lock&nbsp;(0&nbsp;-&nbsp;3)[0m
+[38;2;150;203;89m-s[0m	[38;2;191;165;48mDump:&nbsp;start&nbsp;address[0m
+[38;2;150;203;89m-b[0m	[38;2;191;165;48mDump:&nbsp;number&nbsp;of&nbsp;bytes[0m
+[38;2;150;203;89m-q[0m	[38;2;191;165;48mDump:&nbsp;quiet&nbsp;mode,&nbsp;disable&nbsp;address&nbsp;and&nbsp;ASCII&nbsp;columns[0m
+[38;2;150;203;89m-h[0m	[38;2;191;165;48mhelp&nbsp;for&nbsp;Bus&nbsp;Pirate&nbsp;commands&nbsp;and&nbsp;modes[0m
+[0m
+[38;2;150;203;89mI2C>[0m&nbsp;
