@@ -5,7 +5,7 @@ title = 'ddr4 command'
 
 ### ```ddr4``` Probe, read, write, unlock DDR4 SDRAM modules
 
-{{< asciicast src="/screencast/ddr4-command-cast.json" poster="npt:0:22"  idleTimeLimit=2 >}}
+{{< asciicast src="/screencast/ddr4-command-cast.json" poster="npt:0:22"  idleTimeLimit=2 >}} 
 <br/>
 The ```ddr4``` command can probe, read, write, and unlock the SPD hub chip in [DDR4 SDRAM computer memory modules]({{< relref "/docs/devices/ddr4">}}) (UDIMM, SODIMM). 
 - Unlock SPD chips, backup SPD data and restore corrupted SPD tables. 

@@ -1,43 +1,31 @@
 m hiz
 c
 3
-1
+2
 x
 rm bpi2c.bp
-m i2c 
-100 
-1 
-W 3.3 
-P 
-a 2
-A 3
-# ddr4-command-help
-ddr4 -h
-# ddr4-command-probe
-ddr4 probe
-# ddr4-command-dump
-ddr4 dump
-# ddr4-command-dump-partial
-ddr4 dump -s 0x149 -b 32
-# ddr4-command-read
-ddr4 read -f ddr4.bin
+# ddr5-command-cast
+m i2c # m i2c - enter I2C mode
+100 # 100kHz I2C speed
+1 # Disable clock stretching
+W 3.3 # W 3.3 - enable 3.3 volt power supply
+P # P - enable pull-up resistors
+a 2 # SA0 - 9 volt disabled
+A 3 # removed in next revision
+ddr4 -h # ddr4 -h - show help
+ddr4 probe # Scan for DDR4 device info
+ddr4 dump # Dump DDR4 SPD data to console
+ddr4 dump -s 0x149 -b 32 # Dump DDR4 SPD data starting from address 0x149, 32 bytes
+ddr4 read -f ddr4.bin # read DDR4 SPD data to file
+A 2 # SA0 - 9 volt enabled
+ddr4 unlock # unlock all blocks
+a 2 # SA0 - 9 volt disabled
+ddr4 write -f ddr4.bin # write DDR4 SPD data from file
+ddr4 verify -f ddr4.bin # verify DDR4 SPD data against file
+ddr4 crc -f ddr4.bin # calculate/verify CRC for DDR4 SPD data file
+ddr4 patch -f ddr4.bin # patch DDR4 SPD data file with correct CRC
 # stop
-A 2
-# ddr4-command-lock
-ddr4 unlock
-#stop 
-a 2
-# ddr4-command-write
-ddr4 write -f ddr4.bin
-# ddr4-command-verify
-ddr4 verify -f ddr4.bin
-#stop
 A 2
 ddr4 lock -b 0
 ddr4 lock -b 1
 a 2
-# ddr4-command-crc
-ddr4 crc -f ddr4.bin
-# ddr4-command-patch
-ddr4 patch -f ddr4.bin
-# stop
