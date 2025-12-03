@@ -2251,7 +2251,7 @@ Use ```ddr5 -h``` to see the latest options and features.
 |```ddr5 crc```|Calculate/verify CRC of JEDEC blocks 0-7 in a file. Specify file with -f flag.|
 |```ddr5 patch```|Update the CRC of JEDEC blocks 0-7 in a file. Specify file with -f flag.|
 
-Options tell the flash command what to do.
+Options tell the ddr5 command what to do.
 
 |Flag|Description|
 |-----|-----------|
@@ -2400,7 +2400,7 @@ Use ```ddr4 -h``` to see the latest options and features.
 |```ddr4 crc```|Calculate/verify CRC of JEDEC blocks 0-7 in a file. Specify file with -f flag.|
 |```ddr4 patch```|Update the CRC of JEDEC blocks 0-7 in a file. Specify file with -f flag.|
 
-Options tell the flash command what to do.
+Options tell the ddr4 command what to do.
 
 |Flag|Description|
 |-----|-----------|
