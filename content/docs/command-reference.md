@@ -1608,7 +1608,15 @@ $GNZDA,,,,,,*56
 $GPTXT,01,01,01,ANTENNA OK*35
 {{</term>}}
 
-Transparent UART ```bridge```. Bidirectional UART pass-through to interact with other serial devices from inside the Bus Pirate terminal. Press the Bus Pirate button to exit. 
+Transparent UART ```bridge```. Acts as a USB to serial converter between the UART on the IO pins and the USB serial port used by the Bus Pirate terminal. 
+- Use directly with devices that have a terminal interface (example: routers)
+- *Exit your terminal program* to use the port with a script or software (example: programming a chip, GPS software)
+
+Press the Bus Pirate button to exit.
+
+{{% alert context="warning" %}}
+The UART bridge is between the Bus Pirate UART pins and the USB serial port used by the Bus Pirate terminal. To use the UART brige with a script or software, *exit your terminal program* first and then use the same port with your application. 
+{{% /alert %}}
 
 {{% alert context="info" %}}
 Use ```bridge -h``` to see the latest options and features.
