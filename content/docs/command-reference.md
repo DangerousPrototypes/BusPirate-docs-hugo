@@ -1615,7 +1615,7 @@ Transparent UART ```bridge```. Acts as a USB to serial converter between the UAR
 Press the Bus Pirate button to exit.
 
 {{% alert context="warning" %}}
-The UART bridge is between the Bus Pirate UART pins and the USB serial port used by the Bus Pirate terminal. To use the UART brige with a script or software, *exit your terminal program* first and then use the same port with your application. 
+The UART bridge is between the Bus Pirate UART pins and the USB serial port used by the Bus Pirate terminal. To use the UART brige with a script or software, *exit your terminal program* first and then use the same port with your application. **The bridge is NOT active on the secondary USB serial port used by *binmode*.**
 {{% /alert %}}
 
 {{% alert context="info" %}}
