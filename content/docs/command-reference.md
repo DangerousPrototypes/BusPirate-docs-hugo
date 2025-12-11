@@ -1626,11 +1626,13 @@ Use ```bridge -h``` to see the latest options and features.
 
 {{< termfile source="static/snippets/cmdref-mode-uart-gps.html" >}}
 
-Most GPS modules output [NMEA sentences](https://gpsd.gitlab.io/gpsd/NMEA.html) through a serial UART. The ```gps``` command decodes common sentences using [minmea](https://github.com/kosma/minmea). The raw data and decoded data are printed in the terminal. Press any key to exit.
+Most GPS modules output [NMEA sentences](https://gpsd.gitlab.io/gpsd/NMEA.html) through a serial UART. The [```gps``` command]({{< relref "/docs/devices/nmea-gps/#gps-command">}}) decodes common sentences using [minmea](https://github.com/kosma/minmea). The raw data and decoded data are printed in the terminal. Press any key to exit.
+- [```gps``` command]({{< relref "/docs/devices/nmea-gps/#gps-command">}}) UART tutorial and examples
 
 {{% alert context="info" %}}
 Use ```gps -h``` to see the latest options and features.
 {{% /alert %}}
+
 
 ### ```glitch``` Glitch hacking framework
 
