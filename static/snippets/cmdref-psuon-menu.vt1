@@ -6,8 +6,9 @@ Volts&nbsp;(0.80V-5.00V)[0m
 [38;2;150;203;89mx&nbsp;to&nbsp;exit&nbsp;(300.00)&nbsp;>[0m&nbsp;50
 [38;2;83;166;230m5.00[0mV[38;2;191;165;48m&nbsp;requested,&nbsp;closest&nbsp;value:&nbsp;[38;2;83;166;230m5.00[0mV
 [38;2;83;166;230m50.0[0mmA[38;2;191;165;48m&nbsp;requested,&nbsp;closest&nbsp;value:&nbsp;[38;2;83;166;230m50.0[0mmA
+[38;2;191;165;48mUndervoltage&nbsp;limit:&nbsp;[38;2;83;166;230m4.50[0mV&nbsp;(10%)
 
-[38;2;191;165;48mPower&nbsp;supply:[0mEnabled
-[38;2;191;165;48mVreg&nbsp;output:&nbsp;[38;2;83;166;230m5.0[0mV[38;2;191;165;48m,&nbsp;Vref/Vout&nbsp;pin:&nbsp;[38;2;83;166;230m5.0[0mV[38;2;191;165;48m,&nbsp;Current:&nbsp;[38;2;83;166;230m2.8[0mmA[38;2;191;165;48m
+[38;2;191;165;48mPower&nbsp;supply:&nbsp;&nbsp;[0mEnabled
+[38;2;191;165;48mVreg&nbsp;output:&nbsp;[38;2;83;166;230m5.0[0mV[38;2;191;165;48m,&nbsp;Vref/Vout&nbsp;pin:&nbsp;[38;2;83;166;230m5.0[0mV[38;2;191;165;48m,&nbsp;Current:&nbsp;[38;2;83;166;230m3.1[0mmA[38;2;191;165;48m
 [0m[0m
 [38;2;150;203;89m2WIRE>[0m&nbsp;

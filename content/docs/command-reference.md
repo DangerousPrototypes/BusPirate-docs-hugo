@@ -295,18 +295,30 @@ A 'Programmable Power Supply Unit' (PPSU) has several handy features:
 - 1-5volts adjustable output
 - 0-500mA current sense 
 - 0-500mA current limit with digital fuse
+- Adjustable undervoltage limit to detect shorts and brownouts
 - One-way valve to protect the PPSU when an external voltage is applied to the VREF/VOUT pin
 
 Uppercase ```W``` enables the onboard power supply unit. You will be prompted for the output voltage and an optional current limit. Default current limit is 300mA, or 0 for no current limit. 
 
+Command line options: ``` W <voltage> <current limit> -u <undervoltage limit> ```
+
+| Option | Description |
+|--------|-------------|
+| Voltage | Output voltage in volts (1.0 to 5.0V) |
+| Current limit | Current limit in mA (0 to 500mA). 0 for no current limit. Default is 300mA. |
+| Undervoltage limit | Undervoltage limit in percent (0 to 100). Default is 10. ```-u 100``` to disable undervoltage protection. |
+
+Examples:
 - ```W``` - Enable the power supply unit. Show interactive menu to set voltage and current limit.
 - ```W <voltage> <current limit>``` - Enable the power supply unit with voltage and current limit specified. 
-- ```W <voltage>``` - Enable the power supply unit with voltage specified. Current limit is set to 300mA.
+- ```W <voltage>``` - Enable the power supply unit with voltage specified. Current limit is set to 300mA by default.
+- ```W <voltage> 0``` - Enable the power supply unit with voltage specified. No current limit.
+- ```W <voltage> <current limit> -u <undervoltage limit>``` - Enable the power supply unit with voltage, current limit and undervoltage limit (percent) specified.
 - ```w``` - Disable the power supply unit.
 
 Check the voltage and current in the live view statusbar if active, or show the power supply voltage report using the ```v``` command.
 
-When the programmed current limit is exceeded the PPSU hardware fuse disables the power supply. The terminal colors invert repeatedly, an alarm bell will sound, an error message is shown and command execution is halted. Use the ```W``` command to restart the PPSU again.
+When the programmed current limit or undervoltage limit is exceeded the power supply is disabled. The terminal colors invert repeatedly, an alarm bell will sound, an error message is shown and command execution is halted. Use the ```W``` command to restart the PPSU again.
 
 {{% alert context="danger" %}}
 300mA is the rated maximum of the PPSU, but we added some headroom in the current limit to account for current spikes.
@@ -316,7 +328,7 @@ When the programmed current limit is exceeded the PPSU hardware fuse disables th
 The PPSU is capable of 0.8 to 5volts output. However, the maximum working range is limited to 1-5volts because of the maximum Vgs of the P-channel MOSFET in the one-way valve. Many will be capable of the full range, but some may not. The Bus Pirate IO buffers are only rated to 1.65volts, so in practice this isn't an issue over the specified working range.
 {{% /alert %}}
 
-
+ 
 
 {{< termfile  source="static/snippets/cmdref-psuon-short.html" >}} 
 

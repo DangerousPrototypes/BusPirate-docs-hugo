@@ -1,0 +1,16 @@
+m hiz
+c
+3
+1
+x
+rm bp2wire.bp
+m 2wire
+50
+# cmdref-psuon-menu
+W
+5
+50
+# stop
+# cmdref-psuon-short
+W 5 50
+# stop
