@@ -1,0 +1,10 @@
+m hiz
+c
+3
+1
+x
+# cmdref-jep106
+jep106 -h
+jep106 0x00 0x2c
+jep106 0x0a 0xab
+# stop

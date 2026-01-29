@@ -286,6 +286,8 @@ Useful when connecting to an already running Bus Pirate with a new terminal wind
 |```=```X | Convert X to HEX/DEC/BIN number format
 |```\|``` X | Reverse bits in byte X
 |```a```/```A```/```@``` | Auxiliary pin control (low/HIGH/input)
+|```logic``` | Logic analyzer control
+|```jep106``` | Lookup 2 byte JEDEC JEP106 vendor ID
 
 
 ### ```w/W``` Power supply (off/ON) 
@@ -505,6 +507,29 @@ The Bus Pirate can be [used as a logic analyzer in multiple ways]({{< relref "/d
 - [Directly in the terminal with the ```logic``` command]({{< relref "/docs/logic-analyzer/logic-command" >}})
 
 {{< termfile  source="static/snippets/cmdref-logic.html" >}}
+
+### ```jep106``` Lookup JEP106 vendor ID
+
+{{< termfile  source="static/snippets/cmdref-jep106.html" >}}
+
+There are several types of JEDEC manufacturer/vendor IDs. A 2 byte [JEP106 ID](https://www.jedec.org/standards-documents/docs/jep-106ab) is commonly used in flash, NAND and other chips. The Bus Pirate can lookup 2 byte JEP106 IDs with the ```jep106``` command.
+
+- ```jep106 <bank number> <vendor ID>``` - Lookup a two byte JEP106 vendor ID 
+
+The first byte of a JEP106 ID is the *bank* number where the vendor ID is found. Currently only the lower 4 bits are used, yielding 16 banks numbered 0-15.
+
+Byte 2 is the vendor ID, a number in the range of 1-126. Finding the vendor ID in the correct bank gives us the vendor name.
+
+{{% alert context="info" %}}
+JEP106 vendor IDs are limited to the range of 1 to 126. To include more than 126 vendors, the list is divided into 16 *banks* (currently) of 126 vendors each.
+
+Here are some fun facts about vendor ID numbers:
+- Vendor ID is 7 bits and 1 indexed (not 0!). So there are 126 vendor IDs in each bank (0x01 to 0x7e)
+- Vendor ID 0x00 is invalid (indexed from 1)
+- **IF** the bank is 0 then vendor ID bit 7 will be 0. Thus vendor IDs in bank 0 range from 0x01 to 0x7e.
+- **IF** the bank is greater than 0 vendor ID bit 7 will be 1. Thus vendor IDs in bank 1+ range from 0x81 to 0xff.
+{{% /alert %}}
+
 
 ## Disk Commands
 
