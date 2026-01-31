@@ -1909,6 +1909,13 @@ NACK the read and properly end the I2C transaction.
 
 Sniff I2C packets up to 500kHz.
 
+|Flag|Description|
+|-|-|
+|```-q```| Supress (quiet) ACK in output|
+|```-r```|Print (raw) data, no '[',']','R''W'|
+|```-7```|Use 7-bit addressing in output (default is 8-bit)|
+|```-h```|Show help for the i2c sniff command|
+
 ### ```i2c``` Generic dump register command
 
 {{< termfile source="static/snippets/i2cdump.html" >}}
