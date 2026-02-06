@@ -577,7 +577,271 @@ Temperature data: ['0x50', '0x05']
 Temperature: 21.3125°C
 ```
 
-##  Debugging
+
+### UART Data
+
+The BPIO2 protocol supports full-duplex UART (Universal Asynchronous Receiver/Transmitter) communication, enabling both synchronous transactions and asynchronous data monitoring. The UART interface is accessed via the `BPIOUART` class in the `pybpio` Python library.
+
+#### Features
+
+- Configurable baud rate, data bits, parity, stop bits, flow control, and signal inversion
+- Synchronous data write/read operations
+- Asynchronous data monitoring (buffered or callback modes)
+- Real-time event-driven or polling-based data handling
+
+#### Configuration
+
+|Method|Parameters|Description|
+|------|----------|-----------|
+|`configure(speed, data_bits, parity, stop_bits, flow_control, signal_inversion, async_callback, **kwargs)`|`speed` (int, default=115200)<br>`data_bits` (int, default=8)<br>`parity` (bool, default=False)<br>`stop_bits` (int, default=1)<br>`flow_control` (bool, default=False)<br>`signal_inversion` (bool, default=False)<br>`async_callback` (function or None)<br>`**kwargs` (configuration options) | Configure UART mode with specified parameters and optional async callback |
+
+{{% alert context="info" %}}
+Speed is specified in baud/bps (e.g., 115200).
+{{% /alert %}} 
+
+#### UART Operations
+
+| Method | Parameters | Description |
+|--------|------------|-------------|
+| `write(data)` | `data` (bytes or list) | Write bytes to UART |
+| `transfer(write_data, read_bytes)` | `write_data` (bytes or list)<br>`read_bytes` (int, optional) | Perform combined write/read UART transaction, 1 second read timeout |
+| `read_async(clear_buffer)` | `clear_buffer` (boolean) | Read any available async data from UART buffer (buffered mode only) |
+
+<!-- | `read(num_bytes)` | `num_bytes` (int) | Read specified number of bytes from UART, 1 second timeout |-->
+
+{{% alert context="info" %}}
+When using async callback mode, data is not buffered and must be handled in the callback function. In buffered mode, use `read_async()` to retrieve accumulated async data. See the async data monitoring section below for details.
+{{% /alert %}}
+
+#### Basic Configuration
+
+```python
+from pybpio.bpio_client import BPIOClient
+from pybpio.bpio_uart import BPIOUART
+client = BPIOClient('COM35')
+uart = BPIOUART(client)
+uart.configure(speed=115200, data_bits=8, parity=False, stop_bits=1, flow_control=False, signal_inversion=False, async_callback=None)
+```
+#### Synchronous Data Transfer
+
+```python
+response = uart.transfer(b"Ping", read_bytes=4)
+if response and 'data_read' in response:
+    print(response['data_read'])
+```
+
+Write bytes, then attempt to read 4 bytes with a 1 second timeout.
+
+{{% alert context="info" %}}
+Use a loop-back connection (RX connected to TX) to test from a single Bus Pirate.
+{{% /alert %}}
+
+#### Asynchronous Data Monitoring
+
+{{% alert context="info" %}}
+UART data can be received at any time, not just in response to a write or transfer operation. BPIO2 provides two modes for handling this asynchronous data: buffered mode and callback mode.
+{{% /alert %}}
+
+#### 1. Buffered Mode
+
+```python
+uart.configure(..., async_callback=None)  # No callback
+# ...send data...
+time.sleep(1)
+data = uart.read_async()
+if data:
+    print("Async RX:", data)
+```
+Async data is accumulated in an internal buffer and can be read at any time.
+
+#### 2. Callback Mode
+
+```python
+def on_uart_data(data):
+    print("Received:", data)
+
+uart.configure(..., async_callback=on_uart_data)
+# ...send data...
+# Callback is called automatically when data arrives
+```
+
+You can also provide your own callback function to process async data as it arrives in real time.
+
+{{% alert context="info" %}}
+When using async callback mode, data is not buffered and must be handled in the callback function you provide. In buffered mode, use `uart.read_async()` to retrieve accumulated data.
+{{% /alert %}}
+
+### LED Data
+
+The `BPIOLED` class provides support for controlling RGB LEDs, including WS2812/SK6812/NeoPixel, APA102/SK9822, and the Bus Pirate's onboard RGB LED (also a SK6812).
+
+#### Configuration
+
+| Method | Parameters | Description |
+|--------|------------|-------------|
+| `configure(led_type, **kwargs)` | `led_type` (str or int)<br>`**kwargs` (additional config) | Configure LED mode with specified LED type: 'WS2812', 'APA102', or 'ONBOARD' (or 0, 1, 2) |
+
+{{% alert context="info" %}}
+**LED Types:**
+- **WS2812** (0): WS2812/SK6812/NeoPixel compatible addressable LEDs (data on SDO pin)
+- **APA102** (1): APA102/SK9822   addressable LEDs with brightness control (data on MOSI, clock on CLK)
+- **ONBOARD** (2): Bus Pirate's built-in RGB LED
+{{% /alert %}}
+
+#### LED Operations
+
+| Method | Parameters | Description |
+|--------|------------|-------------|
+| `write(data, start_main, stop_main)` | `data` (bytes or list) | Write raw data to LED device |
+| `set_rgb(r, g, b, brightness)` | `r` (int, 0-255)<br>`g` (int, 0-255)<br>`b` (int, 0-255)<br>`brightness` (int, 0-31, default=31) | Set single LED to RGB color (brightness only for APA102) |
+| `set_rgbw(r, g, b, w, brightness)` | `r` (int, 0-255)<br>`g` (int, 0-255)<br>`b` (int, 0-255)<br>`w` (int, 0-255)<br>`brightness` (int, 0-31, default=31) | Set single RGBW LED (WS2812 only) |
+| `set_multiple_rgb(colors, brightness)` | `colors` (list of (r,g,b) tuples)<br>`brightness` (int, 0-31, default=31) | Set multiple LEDs with RGB values (brightness only for APA102) |
+| `clear(num_leds)` | `num_leds` (int, default=1) | Turn off LEDs (set to black/off) |
+
+{{% alert context="warning" %}}
+Each method also accepts `start_main` and `stop_main` parameters that send the appropriate start and stop frames for the LED type
+{{% /alert %}}
+
+- ```start_main``` - RESET (WS2812/SK6812) or START FRAME (APA102) 
+- ```stop_main``` - END FRAME (APA102) 
+
+By default these are set to `True` so each call is treated as a full LED string update. Set to `False` for advanced users who want to manage the timing and framing themselves.
+
+
+{{% alert context="info" %}}
+For **APA102** LEDs, the `brightness` parameter controls individual LED brightness (0-31, where 31 is maximum brightness). For **WS2812** and **ONBOARD** LEDs, this value is ignored. 
+{{% /alert %}}
+
+#### Basic Configuration - Onboard LED
+```python
+>>> from bpio_client import BPIOClient
+>>> from bpio_led import BPIOLED
+>>> client = BPIOClient("COM35")
+>>> led = BPIOLED(client)
+>>> led.configure(led_type='ONBOARD')
+True
+```
+
+#### Basic Configuration - WS2812 External LEDs
+```python
+>>> led = BPIOLED(client)
+>>> led.configure(led_type='WS2812', psu_enable=True, psu_set_mv=5000, psu_set_ma=0)
+True
+```
+
+{{% alert context="info" %}}
+WS2812 LEDs typically require 5V power supply. Enable the Bus Pirate power supply with appropriate voltage when using external LEDs.
+{{% /alert %}}
+
+#### Basic Configuration - APA102 External LEDs
+```python
+>>> led = BPIOLED(client)
+>>> led.configure(led_type='APA102', psu_enable=True, psu_set_mv=5000, psu_set_ma=0)
+True
+```
+
+#### Single LED Control
+```python
+>>> # Set onboard LED to red
+>>> led.configure(led_type='ONBOARD')
+>>> led.set_rgb(255, 0, 0)
+
+>>> # Set first WS2812 LED to green
+>>> led.configure(led_type='WS2812', psu_enable=True, psu_set_mv=5000)
+>>> led.set_rgb(0, 255, 0)
+
+>>> # Set first APA102 LED to blue at 50% brightness
+>>> led.configure(led_type='APA102', psu_enable=True, psu_set_mv=5000)
+>>> led.set_rgb(0, 0, 255, brightness=15)
+```
+
+#### Multiple LED Control
+```python
+>>> # Rainbow pattern on 5 WS2812 LEDs
+>>> led.configure(led_type='WS2812', psu_enable=True, psu_set_mv=5000)
+>>> rainbow = [
+...     (255, 0, 0),    # Red
+...     (255, 165, 0),  # Orange
+...     (255, 255, 0),  # Yellow
+...     (0, 255, 0),    # Green
+...     (0, 0, 255),    # Blue
+... ]
+>>> led.set_multiple_rgb(rainbow)
+
+>>> # Same pattern on APA102 with brightness control
+>>> led.configure(led_type='APA102', psu_enable=True, psu_set_mv=5000)
+>>> led.set_multiple_rgb(rainbow, brightness=20)
+```
+
+#### RGBW LEDs (WS2812 only)
+
+{{% alert context="danger" %}}
+This is implemented in the Python library but not yet supported in the Bus Pirate firmware. Attempting to use RGBW functions with WS2812 LEDs will not work until the firmware is updated to support this feature.
+{{% /alert %}}
+
+```python
+>>> led.configure(led_type='WS2812', psu_enable=True, psu_set_mv=5000)
+>>> # Set RGBW LED with white channel
+>>> led.set_rgbw(255, 0, 0, 128)  # Red + half white
+```
+
+{{% alert context="info" %}}
+RGBW (Red, Green, Blue, White) LEDs have a dedicated white LED channel in addition to RGB. This is only supported by some WS2812 variants.
+{{% /alert %}}
+
+#### Clearing LEDs
+```python
+>>> # Turn off first LED
+>>> led.clear(num_leds=1)
+
+>>> # Turn off first 10 LEDs in a strip
+>>> led.clear(num_leds=10)
+```
+
+#### Global Brightness Control (APA102)
+```python
+>>> led.configure(led_type='APA102', psu_enable=True, psu_set_mv=5000)
+>>> # Test different brightness levels (0-31)
+>>> for brightness in [31, 15, 7, 3, 1]:
+...     led.set_rgb(255, 0, 0, brightness=brightness)
+...     time.sleep(0.5)
+```
+
+{{% alert context="info" %}}
+APA102 LEDs support hardware brightness control (0-31) independent of color values, allowing for smooth dimming without color shifts. WS2812 LEDs require dimming by reducing RGB values directly.
+{{% /alert %}}
+
+#### Write Raw Data to LEDs
+
+|LED|Bytes per LED|Brightness Control|Color Format|
+|---|-------------|------------------|------------|
+|WS2812|3 bytes (GRB)|No|0xGGRRBB|
+|ONBOARD|3 bytes (RGB)|No|0xRRGGBB|
+|APA102|4 bytes (bBGB)|Yes (0xbb = 0-31)|0xbbBBGGRR with brightness byte|
+
+Note that each supported LED has a different raw data format. 
+
+**WS2812**
+```python
+>>> led.configure(led_type='WS2812', psu_enable=True, psu_set_mv=5000)
+>>> # Example raw data for 2 LEDs (6 bytes for RGB)
+>>> raw_data = [255, 0, 0, 0, 255, 0]  # First LED red, second LED green
+>>> led.write(raw_data, start_main=True, stop_main=True)
+```
+**APA102**
+```python
+>>> led.configure(led_type='APA102', psu_enable=True, psu_set_mv=5000)
+>>> # Example raw data for 2 LEDs (8 bytes for bBGB)
+>>> raw_data = [0b11100000 | 31, 255, 0, 0, 0b11100000 | 15, 0, 255, 0]  # First LED bright red, second LED dim green
+>>> led.write(raw_data, start_main=True, stop_main=True)
+```
+
+{{% alert context="danger" %}}
+When writing raw data, you must manage the timing and framing according to the LED type specifications. For WS2812, ensure you send the correct reset timing before and after the data. For APA102, include the appropriate start and end frames.
+{{% /alert %}}
+
+
+## Debugging
 
 {{< term>}}
 [BPIO] Flatbuffer length: 64
@@ -1032,10 +1296,13 @@ The maximum number of bytes in the `data_write` field is reported by the `mode_m
 table DataResponse {
   error:string; // Error message if any.
   data_read:[ubyte]; // Data read from device
+  is_async: bool = false;  // NEW 2.2: marks this as unsolicited async data
 }
 ```
 
 The `DataResponse` table `error` string will contain a message if there was a problem processing the data request. The `data_read` field will contain the data read from the device, if any.
+
+**New in 2.2**: The `is_async` field marks this response as an unsolicited asynchronous data packet. This allows the Bus Pirate to send data to the host without a corresponding request, which is useful for modes like UART where data can be received at any time.
 
 {{% alert context="warning" %}}
 The maximum number of bytes in `data_read` reported by the `mode_max_read` value in the StatusResponse. If you try to read more bytes than the maximum, the request will fail with an error.
