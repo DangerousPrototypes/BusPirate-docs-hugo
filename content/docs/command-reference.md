@@ -2749,6 +2749,10 @@ Reading 1048576 bytes from flash to example.bin
 
 Read the contents of a flash chip to a file with the ```flash read``` command. The file name is specified with the ```-f``` flag.
 
+{{% alert context="info" %}}
+By default the flash command will attempt to detect the flash chip and use the optimal read command. If detection fails, you can use the ```-o``` flag to override chip detection. This uses the common 0x03 read command. Specify the number of bytes to read with the ```-b``` flag.
+{{% /alert %}}
+
 #### Write a flash chip
 
 {{< term "Bus Pirate [/dev/ttyS0]" >}}
@@ -2762,6 +2766,10 @@ Verifying 1048576 bytes from example.bin to flash
 {{< /term >}}
 
 Write a file to a flash chip with the ```flash write``` command. The file name is specified with the ```-f``` flag. Use the ```-e``` flag to erase the chip before writing, and the ```-v``` flag to verify the write.
+
+{{% alert context="danger" %}}
+Confirmation is required before erasing or writing to a flash chip. Use the ```-y``` flag to skip confirmation, but be careful with this option as it can lead to data loss if used incorrectly.
+{{% /alert %}}
 
 #### Verify a flash chip
 
@@ -2787,6 +2795,10 @@ Verifying 1048576 bytes
 
 The ```flash test``` command erases the chip, writes dummy data, and verifies the write. This is a way to test a chip.
 
+{{% alert context="danger" %}}
+Confirmation is required before erasing or writing to a flash chip. Use the ```-y``` flag to skip confirmation, but be careful with this option as it can lead to data loss if used incorrectly.
+{{% /alert %}}
+
 #### Flash Options and flags
 
 | Option | Description |
@@ -2810,6 +2822,7 @@ Options tell the flash command what to do.
 |```-b <bytes>```|Specify the number of bytes to read for dump operations|
 |```-q```|Dump quiet mode, no address or ASCII columns. Useful for copying HEX values to a HEX editor.|
 |```-c```|Dump: disable paging, display all data in one go.|
+|```-o```|Read without chip detection. Uses common 0x03 read command. Use -b flag to specify the number of bytes to read.|
 
 Flags pass file names and other settings.
 
