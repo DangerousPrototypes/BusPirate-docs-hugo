@@ -3,19 +3,18 @@ weight = 20700
 title = 'IC Card and SIM Adapter'
 +++
 
-![](../devices/img/sle4442-adapter.jpg)
+![](/images/docs/demo/sle4442-adapter.jpg)
 
 The IC card and SIM adapter for Bus Pirate 5 has sockets for mini, micro and nano SIM cards. Everything is connected and ready to go - get started right away.
 
-![](../devices/img/ic-card-pinout.png)
+![](/images/docs/demo/ic-card-pinout.png)
 
 Common IC cards usually follow the [ISO 7816-3 standard](https://en.wikipedia.org/wiki/ISO/IEC_7816) and have the same pinout and contact shape. [Image source](https://commons.wikimedia.org/wiki/File:SmartCardPinout.svg).
 
-
+![](/images/docs/fw/sim-iccard-all.jpg)
 
 {{% readfile "/_common/_footer/_footer-cart.md" %}}
 
-![](/images/docs/fw/sim-iccard-all.jpg)
 ## mini, micro, and nano SIM cards
 
 The top of the adapter has sockets for mini, micro, and nano SIM cards. Most [mobile phone SIM cards]({{< relref "/docs/devices/sim-bank-ic-cards" >}}) use a half-duplex serial UART interface, such as the Bus Pirate [HDPLXUART mode]({{< relref "/docs/command-reference/#hduart" >}}). 
