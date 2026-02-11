@@ -1,0 +1,12 @@
+[38;2;150;203;89mI2C>[0m&nbsp;usbpd&nbsp;request&nbsp;-p&nbsp;7&nbsp;-v&nbsp;7500
+Requesting&nbsp;PDO&nbsp;7,&nbsp;7500mV&nbsp;@&nbsp;3249mA
+PD&nbsp;request&nbsp;accepted&nbsp;(PD_MSGRLT=0x01)
+Negotiated&nbsp;voltage:&nbsp;7500&nbsp;mV
+
+VBUS&nbsp;voltage:&nbsp;7680&nbsp;mV
+VBUS&nbsp;current:&nbsp;96&nbsp;mA
+Requested&nbsp;V&nbsp;:&nbsp;7500&nbsp;mV
+Requested&nbsp;I&nbsp;:&nbsp;3000&nbsp;mA
+Temperature&nbsp;:&nbsp;26&nbsp;C
+[0m
+[38;2;150;203;89mI2C>[0m&nbsp;

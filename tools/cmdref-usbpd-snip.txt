@@ -1,0 +1,22 @@
+m hiz
+c
+3
+1
+x
+rm bpi2c.bp
+m i2c # m i2c - enter I2C mode
+100 # 100kHz I2C speed
+1 # Disable clock stretching
+W 5 # W 5 - enable 5 volt power supply
+P # P - enable pull-up resistors
+# cmdref-usbpd-status
+usbpd status # Show USB Power Delivery status
+# cmdref-usbpd-request-fixed
+usbpd request -p 2 # Request profile 2 (9 volts)
+# cmdref-usbpd-request-programmable
+usbpd request -p 7 -v 7500 # Request PPS profile 7, at 7.5 volts
+# cmdref-usbpd-reset 
+usbpd reset # Reset USB Power Delivery connection
+# cmdref-usbpd-help
+usbpd -h # Show help for USB Power Delivery commands
+# stop

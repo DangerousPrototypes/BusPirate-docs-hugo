@@ -1,0 +1,19 @@
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;usbpd&nbsp;-h
+usage:
+<span style="color:rgb(191,165,48)">usbpd&nbsp;[status|request|reset]
+	[-p&nbsp;&ltPDO&nbsp;index>]&nbsp;[-v&nbsp;&ltmV>]&nbsp;[-i&nbsp;&ltmA>]&nbsp;[-h(elp)]
+<span style="color:rgb(191,165,48)">show&nbsp;USB&nbsp;PD&nbsp;status:</span></span>&nbsp;usbpd&nbsp;status
+<span style="color:rgb(191,165,48)">request&nbsp;a&nbsp;fixed&nbsp;voltage&nbsp;PDO&nbsp;profile:</span>&nbsp;usbpd&nbsp;request&nbsp;-p&nbsp;1
+<span style="color:rgb(191,165,48)">request&nbsp;a&nbsp;PPS/AVS&nbsp;voltage&nbsp;profile:</span>&nbsp;usbpd&nbsp;request&nbsp;-p&nbsp;2&nbsp;-v&nbsp;9000&nbsp;-i&nbsp;1500
+<span style="color:rgb(191,165,48)">send&nbsp;USB&nbsp;PD&nbsp;hard&nbsp;reset:</span>&nbsp;usbpd&nbsp;reset
+
+<span style="color:rgb(191,165,48)">interface&nbsp;with&nbsp;USB-C&nbsp;Power&nbsp;Delivery&nbsp;controller&nbsp;AP33772S</span>
+<span style="color:rgb(150,203,89)">status</span>	<span style="color:rgb(191,165,48)">Show&nbsp;USB&nbsp;PD&nbsp;profiles&nbsp;and&nbsp;status</span>
+<span style="color:rgb(150,203,89)">request</span>	<span style="color:rgb(191,165,48)">Request&nbsp;a&nbsp;Power&nbsp;Delivery&nbsp;profile&nbsp;(PDO)</span>
+<span style="color:rgb(150,203,89)">reset</span>	<span style="color:rgb(191,165,48)">Request&nbsp;a&nbsp;USB&nbsp;PD&nbsp;hard&nbsp;reset</span>
+<span style="color:rgb(150,203,89)">-p</span>	<span style="color:rgb(191,165,48)">Power&nbsp;Delivery&nbsp;profile&nbsp;index&nbsp;(1&nbsp;-&nbsp;n)</span>
+<span style="color:rgb(150,203,89)">-v</span>	<span style="color:rgb(191,165,48)">Voltage&nbsp;in&nbsp;mV&nbsp;for&nbsp;adjustable&nbsp;(PPS)&nbsp;PDO&nbsp;request</span>
+<span style="color:rgb(150,203,89)">-i</span>	<span style="color:rgb(191,165,48)">Current&nbsp;in&nbsp;mA&nbsp;for&nbsp;PDO&nbsp;request&nbsp;(optional,&nbsp;default&nbsp;max)</span>
+<span style="color:rgb(150,203,89)">-h</span>	<span style="color:rgb(191,165,48)">Get&nbsp;additional&nbsp;help</span>
+
+<span style="color:rgb(150,203,89)">I2C></span>&nbsp;

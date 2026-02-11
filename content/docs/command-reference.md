@@ -2467,6 +2467,79 @@ Options tell the ddr4 command what to do.
 
 Flags pass file names and other settings.
 
+### ```usbpd``` USB Power Delivery with AP33772S
+
+{{< asciicast src="/screencast/usbpd-cast.json" poster="npt:0:19"  idleTimeLimit=2 >}}
+
+Read USB Power Delivery profiles from USB power supplies, request fixed and adjustable voltages. The ```usbpd``` command uses an AP33772S USB PD3.1 sink controller chip to communicate with USB PD power supplies. 
+- Standard Power Range (SRP) and Programmable Power Supply (PPS) profiles up to 21 volts.
+- Adjustable Voltage Supply (AVS) and Extended Power Range profiles up to 28 volts.
+- Over/Under Voltage Protections (OVP/UVP), Over Current Protection (OCP), Over Temperature Protection (OTP)
+- Moisture Detection in the USB Connector
+
+{{% alert context="info" %}}
+An AP33772S adapter plank has everything you need to get started with USB PD. It includes s current sense resistor, a fuse, and a thermistor for temperature monitoring. Level shifters bring the CC pin signaling voltage (1.1 volts high, 0 volts low) into something visible on most logic analyzers.
+{{% /alert %}}
+
+#### USB PD profiles and status
+
+{{< termfile source="static/snippets/cmdref-usbpd-status.html" >}}
+
+Display the status of the USB PD connection. Displays the active voltage/current and the available power profiles from the connected power supply.
+- ```usbpd status``` - display the current USB PD connection status and supported profiles
+
+{{% alert context="info" %}}
+USB PD profiles come in several flavors. Fixed profiles support a specific voltage, while adjustable profiles allow us to request a voltage within a specified range. This USB supply supports several fixed voltage profiles (5/9/12/15/20 volts), and two PPS profiles with adjustable 3.3 to 11 volt output.
+{{% /alert %}}
+
+#### Request a fixed USB PD profile
+
+{{< termfile source="static/snippets/cmdref-usbpd-request-fixed.html" >}}
+
+Request fixed voltage profiles by the profile number.
+- ```usbpd request -p <profile>``` - request a USB PD profile by its profile number
+- ```usbpd request -p 0``` - request the first profile in the list of supported profiles, which is usually a 5 volt fixed profile
+
+#### Request a programmable USB PD profile
+
+{{< termfile source="static/snippets/cmdref-usbpd-request-programmable.html" >}}
+
+Request programmable/adjustable profiles by profile number, voltage and (optionally) current. Voltage is in millivolts, current is in milliamps. Current is optional, if not specified the power supply will provide the maximum current available for the requested voltage.
+- ```usbpd request -p <profile> -v <voltage> -c <current>``` - request a USB PD profile by its profile number, with the specified voltage and current. 
+- ```usbpd request -p 6 -v 5000 -c 3000``` - request profile 6 (a PPS profile) with 5 volts and 3 amps. The power supply will provide 5 volts and up to 3 amps, depending on its capabilities.
+
+{{% alert context="danger" %}}
+Stay within the 28 volt limit of the AP33772S chip. As USB PD advances there are new voltage nodes added to the specification, and some power supplies may support voltages above 28 volts.
+{{% /alert %}}
+
+#### Reset the USB PD connection
+
+{{< termfile source="static/snippets/cmdref-usbpd-reset.html" >}}
+
+USB PB supports a hard reset command. After a hard reset the power supply will renegotiate the USB PD connection and refresh the list of supported profiles.
+- ```usbpd reset``` - send a hard reset to the USB PD power supply
+
+#### USB PD options and flags
+
+{{< termfile source="static/snippets/cmdref-usbpd-help.html" >}}
+
+|Option|Description|
+|------|-----------|
+|```usbpd status```|Display the current USB PD connection status and supported profiles.|
+|```usbpd request```|Request a USB PD profile by its profile number, with optional voltage and current settings.|
+|```usbpd reset```|Send a hard reset to the USB PD power supply.|
+
+Options tell the usbpd command what to do.
+
+|Flag|Description|
+|-----|-----------|
+|```-p```|Profile flag. Specify the profile number to request.|
+|```-v```|Voltage flag. Specify the voltage in millivolts when requesting a programmable profile.|
+|```-c```|Current flag. Specify the current in milliamps when requesting a programmable profile. Optional, if not specified maximum current will be requested.|
+|```-h```|Show help for Bus Pirate commands and modes|
+
+Flags pass profile numbers, and voltage/current settings. 
+
 ### ```tcs3472``` Read color sensor, show on LEDs
 
 {{< termfile source="static/snippets/tcs3472x-command.html" >}}
@@ -2479,7 +2552,7 @@ Command to read color data from a [TCS3472 color sensor]({{< relref "/docs/devic
 |-i|Set the number of integration cycles to 1-256. Default is 256.|
 
 {{% alert context="info" %}}
-The upper byte of red, blue and green measurements are sent to the Bus Pirate LEDs. The lower byte is disgarded. If the LEDs don't seem to be lighting, try increasing the gain to 60x with the ```-g``` flag.
+The upper byte of red, blue and green measurements are sent to the Bus Pirate LEDs. The lower byte is discarded. If the LEDs don't seem to be lighting, try increasing the gain to 60x with the ```-g``` flag.
 {{% /alert %}}
 
 ### ```sht4x``` Read temperature and humidity
@@ -3471,7 +3544,7 @@ LEDs are power hungry, up to 60mA each at full brightness. The programmable powe
 
 -   **Bus:** Infrared (IR) signals (raw)
 -   **Connections:** one transmit pin, one receive pin and ground
--   **Output type:** open drain input, push-pull ouput (1.65-5volts)
+-   **Output type:** open drain input, push-pull output (1.65-5volts)
 -  **Maximum voltage:** 5volts
 
 {{% alert context="info" %}}
