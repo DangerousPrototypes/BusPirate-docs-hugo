@@ -1,6 +1,6 @@
 +++
 weight = 20701
-title = 'USB Power Deliver Adapter'
+title = 'USB Power Delivery Adapter'
 +++
 
 {{% alert context="info" %}}
@@ -9,7 +9,7 @@ This page is a work in progress. Some details may be missing or incomplete.
 
 ![alt text](/images/docs/usbpd-adapter/image-3.png)
 
-USB Power Delivery (USB PD) is a standard for negotiating power delivery over USB-C connections. The Bus Pirate USB PD adapter is a breakout board for the AP33772S USB PD **sink** controller, which can be used to test and debug USB PD devices and connections. 
+USB Power Delivery (USB PD) is a standard for negotiating power delivery over USB-C connections. The Bus Pirate USB PD adapter is a breakout board for the AP33772S USB PD **sink** controller, which can be used to test and debug USB PD devices and connections using the [```usbpd``` command]({{< relref "/docs/command-reference/#usbpd-usb-power-delivery-with-ap33772s" >}})
 
 The adapter includes TVS diodes for protection, level shifting for the CC lines, an output control FET, a fuse, a current sense resistor, a temperature sensor, and indicator LEDs for power and USB PD status.
 
@@ -23,6 +23,7 @@ Coming soon! Manufacturing will begin after Spring Festival (March 2026).
 
 ## Features
 
+- Works with the Bus Pirate I2C mode [```usbpd``` command]({{< relref "/docs/command-reference/#usbpd-usb-power-delivery-with-ap33772s" >}})
 - AP33772S USB PD 3.1 Sink Controller: Manages USB PD communication and power delivery, **sink only**.
 - Standard Power Range (SRP) and Programmable Power Supply (PPS) profiles up to 21 volts.
 - Adjustable Voltage Supply (AVS) and Extended Power Range profiles up to 28 volts.
