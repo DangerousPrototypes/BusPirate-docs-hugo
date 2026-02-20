@@ -65,7 +65,7 @@ Many USB power supplies can provide high voltage and current that could potentia
 
 USB PD communicates over the CC0 and CC1 lines. The signal levels on these lines are 1.1 volts for a high and 0 volts for a low, which is not a valid range for most cheap logic analyzers.
 
-![alt text](/images/docs/usbpd-adapter/image-1.png)
+![alt text](/images/docs/usbpd-adapter/image-4.png)
 
 The Bus Pirate USB PD adapter includes level shifters that bring these signals up to 3.3/5 volts, making them easier to analyze with common tools. 
 

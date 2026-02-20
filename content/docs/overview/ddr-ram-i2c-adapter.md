@@ -51,7 +51,7 @@ When inserting a DDR5 module into the adapter plank, **hold the bottom of the PC
 
 We only need to connect a few pins to access the SPD hub on a DDR5 module. The rest of the pins are used for power, data, and control signals.
 
-- **HSDA** and **HSCL** are the I2C data and clock pins. While the DDR5 module is powered by 5 volts, the I2C pins must be no more than 3.3 volts. Use a level shifter to connect these pins if needed. 
+- **HSDA** and **HSCL** are the I2C data and clock pins. While the DDR5 module is powered by 5 volts, the I2C pins must be no more than 3.3 volts. The adapter includes a level shifter to safely connect these pins to the Bus Pirate.
 - **HSA** sets the SPD and PMIC I2C address. Motherboards accept multiple DDR5 modules, so each module needs a unique I2C address. A pull-down resistor connected to the HSA pin sets the last four bits of the base I2C address (0x50). When HSA is connected to ground the module goes into a special *offline service mode* that allows us to change write protected portions of the EEPROM. 
 - **PWR_EN** enables the DDR5 module power supply when connected to 3.3 volts.
 - **PWR_GOOD** is an open drain output signal from the PMIC. If the power is stable this pin will float, but if the supply is interrupted it will pull low. This might be useful for diagnosing a faulty DDR5 module power supply.
