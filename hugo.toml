@@ -32,7 +32,7 @@ title = 'Bus Pirate Documentation'
         keywords = "Hardware hacking, debugging, learn electronics"
 
     [params.footer] 
-        copyright       = "Copyright © 2025 Where Labs, LLC. Built with Open Source."
+        copyright       = "Copyright © 2026 Where Labs, LLC. Bus Pirate™ is a trademark of Where Labs, LLC."
     
     [params.asciinema.defaults]
         autoPlay = true

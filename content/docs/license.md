@@ -3,7 +3,7 @@ weight = 200000
 title = 'License'
 +++ 
 
-Bus Pirate is an open source/open hardware project.
+Bus Pirate™ is an open source/open hardware project.
 
 ## Datasheet excerpts
 
@@ -21,6 +21,10 @@ Specifically limited to branded artwork such as product packaging and stickers.
 
 {{% readfile "/_common/_license/_cc-by-sa.md" %}}
 
-## Get a Bus Pirate
+## Trademarks
+
+Bus Pirate™ is a trademark of Where Labs, LLC. All rights reserved.
+
+## Get a Bus Pirate™
 
 {{% readfile "/_common/_footer/_footer-cart.md" %}} 
