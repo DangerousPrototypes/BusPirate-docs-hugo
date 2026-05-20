@@ -4,13 +4,7 @@ title = 'DDR4 SDRAM module I2C'
 katex = true
 +++  
 
-{{% alert context="warning" %}}
-This page is a work in progress. Some details may be missing or incomplete.
-{{% /alert %}}
-
-![](/images/docs/demo/ddr5-plank-temp.jpg)
-
-
+![](/images/docs/ddr4/ddr4-plank-action.jpg)
 
 DDR4 is an older computer memory RAM standard. Each stick has a simple EEPROM that stores Serial Presence Detect (SPD) data. Motherboards use SPD data to configure DDR RAM and optimize performance.  We can use the Bus Pirate to learn about the DDR4 stick, and rescue modules with corrupted SPD data.
 
