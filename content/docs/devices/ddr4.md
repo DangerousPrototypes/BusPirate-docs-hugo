@@ -79,7 +79,7 @@ There are multiple **VDD** and **VSS** pins on a DDR4 module, but only one of ea
 
 ## DDR4 adapter board
 
-![](/images/docs/demo/ddr5-plank-temp.jpg)
+![](/images/docs/ddr4/ddr4.jpg)
 
 Soldering wires directly to a DDR4 module will probably render it unusable. Get a spare socket or adapter from your favorite supplier. Alternatively, the DDR4 adapter plank makes it easy to work with DDR4 UDIMM and SODIMM modules:
 - 288 pin DDR4 UDIMM socket for standard desktop memory modules
