@@ -15,7 +15,11 @@ For those who prefer a graphical user interface, AVRDUDESS offers a user-friendl
 In this demo we'll program the ATmega32U4 chip found on the Arduino Leonardo through the ICSP header. 
 
 {{% alert context="warning" %}}
-Always power the AVR target board externally (e.g., via USB) — it usually works better than powering it only from the Bus Pirate.
+Always power the AVR target board externally (e.g., via USB). It usually works better than powering it only from the Bus Pirate.
+{{% /alert %}}
+
+{{% alert context="warning" %}}
+Use AVRDUDE newer than 8.3. Older versions can lose EEPROM data when writing, and can fail with "initialization failed" when the board runs a sketch that uses the SCK pin (D13 on an Arduino Uno), like Blink. Both are fixed by [#2219](https://github.com/avrdudes/avrdude/pull/2219) and [#2222](https://github.com/avrdudes/avrdude/pull/2222).
 {{% /alert %}}
 
 ## Connections
@@ -41,46 +45,43 @@ RESET is connected to the CS pin on the Bus Pirate. The CS pin is used to reset 
 {{< term "Bus Pirate [/dev/ttyS0]" >}}
 <span style="color:#96cb59">HiZ></span> binmode
 
-<span style="color:#bfa530">Select binary mode</span>
  1. SUMP logic analyzer
- 2. Binmode test framework
+ 2. BPIO2 flatbuffer interface
  3. Arduino CH32V003 SWIO
  4. Follow along logic analyzer
- 5. Legacy Binary Mode for Flashrom and AVRdude (EXPERIMENTAL)
- x. Exit
-<span style="color:#96cb59"> ></span> 5
-<span style="color:#bfa530">Binmode selected: </span>
- Legacy Binary Mode for Flashrom and AVRdude (EXPERIMENTAL)
+ 5. Legacy Binary Mode for Flashrom and AVRdude
+ 6. IRMAN IR decoder (LIRC, etc)
+ 7. AIR capture (AnalysIR, etc)
+<span style="color:#bfa530">Select binary mode</span>
+<span style="color:#96cb59">x to exit (1) ></span> 5
+
+<span style="color:#bfa530">Binmode selected:</span> Legacy Binary Mode for Flashrom and AVRdude
 <span style="color:#bfa530">Binmode active. Terminal locked</span>
 {{< /term >}}
 
 In the Bus Pirate terminal use the ```binmode``` command to select the "Legacy Binary Mode for Flashrom and AVRdude".
 
-{{% alert context="warning" %}} 
-This mode is experimental, use at your own risk.
-{{% /alert %}}
-
 {{< term "Bus Pirate [/dev/ttyS0]" >}}
+<span style="color:#bfa530">Set OUTPUT HOLD(IO2) &amp; WP(IO3) pins? (no=INPUT)</span>
+<span style="color:#96cb59">y/n, x to exit (Y) ></span> n
+
 <span style="color:#bfa530">Power supply
 Volts (0.80V-5.00V)</span>
 <span style="color:#96cb59">x to exit (3.30) ></span> 5
-<span style="color:#53a6e6">5.00</span>V<span style="color:#bfa530"> requested, closest value: <span style="color:#53a6e6">5.00</span></span>V
-Set current limit?
-y
 
 <span style="color:#bfa530">Maximum current (0mA-500mA)</span>
-<span style="color:#96cb59">x to exit (100.00) ></span> 150
-<span style="color:#53a6e6">150.0</span>mA<span style="color:#bfa530"> requested, closest value: <span style="color:#53a6e6">150.0</span></span>mA
+<span style="color:#96cb59">x to exit (200.00) ></span> 150
 
-<span style="color:#bfa530">Power supply:</span>Enabled
-<span style="color:#bfa530">
-Vreg output: <span style="color:#53a6e6">4.9</span></span>V<span style="color:#bfa530">, Vref/Vout pin: <span style="color:#53a6e6">4.9</span></span>V<span style="color:#bfa530">, Current sense: <span style="color:#53a6e6">9.2</span></span>mA<span style="color:#bfa530">
-</span>
+<span style="color:#bfa530">Power supply set to 5.00V, 150mA</span>
+
+Done! Just execute flashrom or avrdude using the binary com port
+To exit: press the button, or type 'q' here and confirm with 'y'.
+Either way the Bus Pirate resets on exit.
 {{< /term >}}
 
-When entering this mode, it asks for the power supply voltage. Select 5 volts. It also asks for the current limit. 150 mA is a good value for the current limit.
+First it asks about the HOLD and WP pins: answer n, they are not used here. Then select 5 volts and a current limit of 150 mA.
 
-The terminal is locked in this mode. To exit, re-plug the Bus Pirate.
+The terminal is locked in this mode. To exit, press the button, or type q and confirm with y.
 
 {{% alert context="warning" %}} 
 Arduino Leonardo runs at 5 volts. Make sure the Bus Pirate power supply is set to 5 volts.
