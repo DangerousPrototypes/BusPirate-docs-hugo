@@ -65,6 +65,9 @@ In the Bus Pirate terminal use the ```binmode``` command to select the "Legacy B
 <span style="color:#bfa530">Set OUTPUT HOLD(IO2) &amp; WP(IO3) pins? (no=INPUT)</span>
 <span style="color:#96cb59">y/n, x to exit (Y) ></span> n
 
+<span style="color:#bfa530">Clock on IO0 for avrdude -x cpufreq?</span>
+<span style="color:#96cb59">y/n, x to exit (Y) ></span> n
+
 <span style="color:#bfa530">Power supply
 Volts (0.80V-5.00V)</span>
 <span style="color:#96cb59">x to exit (3.30) ></span> 5
@@ -79,7 +82,7 @@ To exit: press the button, or type 'q' here and confirm with 'y'.
 Either way the Bus Pirate resets on exit.
 {{< /term >}}
 
-First it asks about the HOLD and WP pins: answer n, they are not used here. Then select 5 volts and a current limit of 150 mA.
+First it asks about the HOLD and WP pins: answer n, they are not used here. The IO0 clock is only for an AVR without a crystal (see [below](#avr-without-a-crystal)): the Leonardo has one, so answer n. Then select 5 volts and a current limit of 150 mA.
 
 The terminal is locked in this mode. To exit, press the button, or type q and confirm with y.
 
@@ -128,6 +131,16 @@ Select "Read" and click "Go" button to dump the flash memory.
 {{% alert context="warning" %}} 
 Never select "The Bus Pirate bitbang interface, supports TPI" as the programmer. It will not work.
 {{% /alert %}}
+
+## AVR without a crystal
+
+An AVR whose fuses select an external clock needs a clock on XTAL1 before it can be programmed. Answer y to "Clock on IO0 for avrdude -x cpufreq?", connect IO0 to XTAL1, and give AVRDUDE the frequency in kHz (125 to 4000):
+
+```bash
+avrdude -c buspirate -P COM5 -p m328p -x cpufreq=4000 -U flash:r:dump.bin:r
+```
+
+IO0 gives the clock while AVRDUDE runs; firmware that does not ask this question has no clock on IO0. Keep the SPI clock under a quarter of that frequency: the default 30 kHz works with any `-x cpufreq`, and with `-x cpufreq=4000` you can go up to `-x spifreq=2` (250 kHz).
 
 
 
