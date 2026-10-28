@@ -669,6 +669,7 @@ The Bus Pirate has two USB serial ports.
 - [Follow Along Logic Analyzer protocol]({{% relref "http://localhost:1313/docs/binmode-reference/protocol-faladata/" %}}) for [sigrok/PulseView]({{% relref "/docs/logic-analyzer/pulseview-fala/" %}})
 - [Legacy Binary Mode]({{% relref "/docs/binmode-reference/protocol-spi-legacy/" %}}) for [Flashrom]({{% relref "/docs/software/flashrom/" %}}) and [AVRdude]({{% relref "/docs/software/avrdude/"%}})
 - [aIR]({{% relref "/docs/binmode-reference/protocol-air/" %}}) for [AnalysIR]({{% relref "/docs/software/analysir/" %}}).
+- [Bus Pirate v3 unbrick]({{% relref "/docs/software/bus-pirate-v3-unbrick/" %}}) to write the bootloader of a Bus Pirate v3
 
 ### ```binmode``` Change binary mode 
 
@@ -706,6 +707,13 @@ Flashrom is a versatile utility for identifying, reading, writing, verifying, an
 With the IR Toy plank, the Bus Pirate works as a capture device for AnalysIR, a Windows program that decodes and analyzes infrared remote control signals. Select the ```AIR capture (AnalysIR, etc)``` binmode, then choose ```A.IR Shield Nano``` as the source in AnalysIR. Captured signals can be sent back out through the plank's IR LEDs.
 
 See the [AnalysIR guide]({{% relref "/docs/software/analysir/" %}}) for the full setup.
+
+### **Bus Pirate v3** unbrick
+
+![](/images/docs/fw/bpv3-unbrick-setup.jpg)
+
+The Bus Pirate writes the bootloader of a Bus Pirate v3 with a blank or broken flash through its ICSP header, so the Bus Pirate v3 can load firmware over USB again. [Bus Pirate v3 Unbrick]({{% relref "/docs/software/bus-pirate-v3-unbrick/" %}}) has the wiring and the steps.
+
 
 ## Scripting commands
 
