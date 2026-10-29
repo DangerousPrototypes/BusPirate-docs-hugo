@@ -701,6 +701,11 @@ Flashrom is a versatile utility for identifying, reading, writing, verifying, an
 
 ### **AnalysIR** Infrared remote decoder
 
+![](/images/docs/fw/analysir-annotation.png)
+
+With the IR Toy plank, the Bus Pirate works as a capture device for AnalysIR, a Windows program that decodes and analyzes infrared remote control signals. Select the ```AIR capture (AnalysIR, etc)``` binmode, then choose ```A.IR Shield Nano``` as the source in AnalysIR. Captured signals can be sent back out through the plank's IR LEDs.
+
+See the [AnalysIR guide]({{% relref "/docs/software/analysir/" %}}) for the full setup.
 
 ## Scripting commands
 
