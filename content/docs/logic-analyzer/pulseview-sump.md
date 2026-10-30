@@ -30,12 +30,12 @@ Configure the Bus Pirate for SUMP logic analyzer mode.
 ### Change to HiZ mode
 
 {{< term "Bus Pirate [/dev/ttyS0]" >}}
-<span style="color:#96cb59">SPI></span> m 1
+<span style="color:#96cb59">SPI></span> m hiz
 <span style="color:#bfa530">Mode:</span> HiZ
 <span style="color:#96cb59">HiZ></span> 
 {{< /term >}}
 
-For general purpose logic analyzer use, change to HiZ mode with the ```m 1``` command. This will make all the pins inputs and disable pull-up resistors.
+For general purpose logic analyzer use, change to HiZ mode with the ```m hiz``` command. This will make all the pins inputs and disable pull-up resistors.
 
 {{% alert context="danger" %}}
 There is no restriction on using the logic analyzer while the Bus Pirate is not in HiZ mode. However, prior to Bus Pirate hardware 6, all pins are measured behind the IO buffer. This means the logic capture may not match the actual output of the IO buffer **on pins configured as outputs**. This is not a problem when the Bus Pirate is used as a logic analyzer in HiZ mode and all pins are inputs.
@@ -110,7 +110,7 @@ The terminal can be used while the SUMP logic analyzer is running. You can set t
 
 To test capture during use:
 
-- ```m 8``` - Select any mode, we'll use DIO mode because all the pins are free 
+- ```m dio``` - Select any mode, we'll use DIO mode because all the pins are free 
 - ```G``` - Use the ```G``` command to start pulse-width modulation output on more or more pins
 - ```W 5``` - Make sure the buffers are powered
 

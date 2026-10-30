@@ -73,7 +73,7 @@ When software opens the binmode port, the Bus Pirate sends an ID string:
 
 ## Receive
 
-Each signal reaches the host as a list of 5 byte records: one for every mark and every space, in order, then a modulation record with the carrier period. The Bus Pirate sends the signal once the remote has been quiet for 65,535µs.
+Each signal reaches the host as a list of 5 byte records: one for every mark and every space, in order, then a modulation record with the carrier period if the learner measured one. The Bus Pirate sends the signal once the remote has been quiet for 65,535µs.
 
 ### Pulse record
 
