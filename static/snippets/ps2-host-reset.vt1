@@ -1,0 +1,8 @@
+[38;2;150;203;89mPS2>[0m&nbsp;[0xFF&nbsp;r]
+
+
+keyboard&nbsp;on&nbsp;hold&nbsp;(CLK&nbsp;low)
+[38;2;191;165;48mTX:[0m&nbsp;0x[38;2;83;166;230mFF[0m(0x[38;2;83;166;230mFA[0m)&nbsp;ACK
+[38;2;191;165;48mRX:[0m&nbsp;0x[38;2;83;166;230mAA[0m&nbsp;BAT&nbsp;OK
+keyboard&nbsp;released
+[38;2;150;203;89mPS2>[0m

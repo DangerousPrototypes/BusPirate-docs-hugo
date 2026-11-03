@@ -1,0 +1,13 @@
+[38;2;150;203;89mPS2>[0m&nbsp;[0xED&nbsp;0x07]
+
+
+keyboard&nbsp;on&nbsp;hold&nbsp;(CLK&nbsp;low)
+[38;2;191;165;48mTX:[0m&nbsp;0x[38;2;83;166;230mED[0m(0x[38;2;83;166;230mFA[0m)&nbsp;ACK&nbsp;0x[38;2;83;166;230m07[0m(0x[38;2;83;166;230mFA[0m)&nbsp;ACK
+keyboard&nbsp;released
+[38;2;150;203;89mPS2>[0m&nbsp;[0xED&nbsp;0x00]
+
+
+keyboard&nbsp;on&nbsp;hold&nbsp;(CLK&nbsp;low)
+[38;2;191;165;48mTX:[0m&nbsp;0x[38;2;83;166;230mED[0m(0x[38;2;83;166;230mFA[0m)&nbsp;ACK&nbsp;0x[38;2;83;166;230m00[0m(0x[38;2;83;166;230mFA[0m)&nbsp;ACK
+keyboard&nbsp;released
+[38;2;150;203;89mPS2>[0m

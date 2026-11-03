@@ -1297,6 +1297,7 @@ Read the current state of the data pin.
 |HDUART|I2C|SPI|
 |2WIRE|3WIRE|DIO|
 |LED|INFRARED|JTAG|
+|PS2|USB| |
 
 The Bus Pirate supports a variety of bus protocols. Each protocol has its own set of commands and features. Select a protocol with the [```m``` command]({{% relref "/docs/command-reference/#m-set-bus-mode" %}}).
 
@@ -3764,3 +3765,97 @@ The Bus Pirate can find its own SWD pins. Connect IO0-IO2 to the three debug pin
 
 ### Device demos
 - [JTAG & SWD pinout finder]({{% relref "/docs/devices/jtag-swd-pin-finder/" %}})
+
+## PS2
+
+-   **Bus:** [PS/2](https://en.wikipedia.org/wiki/PS/2_port) keyboard
+-   **Connections:** two pins (DAT and CLK) and ground
+-   **Output type:** open drain (1.65-5volts) when the Bus Pirate is the host, ```sniff``` only listens
+-   **Pull-up resistors:** the PC pulls DAT and CLK up; when the Bus Pirate is the host, the keyboard or ```P``` does
+-   **Maximum voltage:** 5 volts
+
+{{% alert context="info" %}}
+PS2 mode sniffs the traffic between a PS/2 keyboard and the PC it is plugged into, or takes the place of the PC and sends commands to the keyboard with bus syntax. Use it with the [PS/2 & USB Keyboard Sniffer adapter plank]({{% relref "/docs/overview/ps2-usb-sniffer-adapter/" %}}).
+{{% /alert %}}
+
+### Connections
+
+| Bus Pirate | Direction | Circuit | Description |
+|------------|--------------------------|---------|---------------|
+| DAT (IO4) | <font size="+2">←→</font> | DATA | PS/2 data |
+| CLK (IO5) | <font size="+2">←→</font> | CLOCK | PS/2 clock |
+| GND | | GND | Ground |
+
+IO6 and IO7 (**RESV**) are used by the sniffer itself, leave them unconnected.
+
+### Bus commands
+
+|Command|Description|
+|-------|-----------|
+| \{ or [ | Hold the keyboard: CLK low, so the keyboard keeps what it wants to send. |
+| \} or ] | Let the keyboard go. |
+| r       | Read one byte from the keyboard, waiting up to one second. (r:1…255 for bulk reads)|
+| 0b      | Send this binary value to the keyboard. The keyboard's answer is shown in parentheses. |
+| 0x      | Send this HEX value to the keyboard. The keyboard's answer is shown in parentheses. |
+| 0-255   | Send this decimal value to the keyboard. The keyboard's answer is shown in parentheses. |
+| ```space```| Value delimiter. Use a space to separate numbers: [0xED 0x07]. |
+
+Bus syntax makes the Bus Pirate the keyboard's only host, so nothing may be plugged into **PS/2 HOST**. After ```[```, and after each byte it sends or reads, the Bus Pirate holds the keyboard until ```]```, and the keyboard keeps what it sends until the next ```r```. The [PS/2 & USB keyboard demo]({{% relref "/docs/devices/ps2-usb-keyboard/#talk-to-a-ps2-keyboard" %}}) has the commands a keyboard understands.
+
+{{% readfile "/_common/other-commands.md" %}}
+
+### ```sniff``` PS/2 keyboard sniffer
+
+{{< termfile source="static/snippets/ps2-keyboard-sniff.html" >}}
+
+```sniff``` turns on the 5 volt power supply, then prints every byte on the bus with the key or the command it belongs to: **D** marks a byte from the keyboard, **H** a byte from the PC. The key tracker line shows the text typed so far. Press **q** to stop, and the sniffer prints the captured text and the byte counts.
+
+### Device demos
+- [PS/2 & USB Keyboard Sniffer]({{% relref "/docs/devices/ps2-usb-keyboard/" %}})
+
+## USB
+
+-   **Bus:** [USB](https://en.wikipedia.org/wiki/USB) low speed (1.5Mbit/s) keyboards, full speed (12Mbit/s) packet capture
+-   **Connections:** two pins (D+ and D-), the trigger input (TRIG) and ground
+-   **Output type:** none, the sniffer only listens
+-   **Pull-up resistors:** not used, the keyboard and the PC set the bus levels
+-   **Maximum voltage:** 5 volts, ```sniff``` sets the power supply to 3.3 volts
+
+{{% alert context="info" %}}
+USB mode sniffs the traffic between a USB keyboard and the PC it is plugged into. Use it with the [PS/2 & USB Keyboard Sniffer adapter plank]({{% relref "/docs/overview/ps2-usb-sniffer-adapter/" %}}).
+{{% /alert %}}
+
+### Connections
+
+| Bus Pirate | Direction | Circuit | Description |
+|------------|--------------------------|---------|---------------|
+| TRIG (IO0) | <font size="+2">←</font> | TRIGGER | Trigger input, a low level starts a capture when the trigger is on |
+| D+ (IO1) | <font size="+2">←</font> | D+ | USB D+ |
+| D- (IO2) | <font size="+2">←</font> | D- | USB D- |
+| GND | | GND | Ground |
+
+IO3 (**RESV**) is used by the sniffer itself, leave it unconnected.
+
+### ```sniff``` USB sniffer
+
+{{< termfile source="static/snippets/usb-keyboard-sniff.html" >}}
+
+```sniff``` turns on the 3.3 volt power supply, says what is on the bus, and waits for single key commands:
+
+|Key|Description|
+|---|---|
+|```e```|Capture speed: Low, or Full for a full speed device|
+|```g```|Capture trigger: a capture waits for TRIG to go low|
+|```l```|Capture limit: 100, 200, 500, 1000, 2000 or 5000 packets|
+|```t```|Time display format: relative to the first packet, the previous packet, the SOF or the bus reset|
+|```a```|Data display format: no data, 16 bytes, 64 bytes or all of it|
+|```f```|Fold empty frames|
+|```h```|Print the help message|
+|```b```|Display the captured packets|
+|```s```|Start a capture|
+|```p```|Stop a capture|
+|```k```|Low speed keylogger, ```q``` to stop it|
+|```x```|Leave the sniffer|
+
+### Device demos
+- [PS/2 & USB Keyboard Sniffer]({{% relref "/docs/devices/ps2-usb-keyboard/" %}})

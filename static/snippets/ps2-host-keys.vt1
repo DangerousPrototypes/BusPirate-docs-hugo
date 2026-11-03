@@ -1,0 +1,14 @@
+[38;2;150;203;89mPS2>[0m&nbsp;[
+
+
+keyboard&nbsp;on&nbsp;hold&nbsp;(CLK&nbsp;low)
+[38;2;150;203;89mPS2>[0m&nbsp;>&nbsp;r:8
+
+
+[38;2;191;165;48mRX:[0m&nbsp;0x[38;2;83;166;230m1C[0m&nbsp;MAKE_A&nbsp;0x[38;2;83;166;230mF0[0m&nbsp;0x[38;2;83;166;230m1C[0m&nbsp;BREAK_A&nbsp;0x[38;2;83;166;230mE0[0m&nbsp;0x[38;2;83;166;230m75[0m&nbsp;MAKE_UP_ARROW&nbsp;0x[38;2;83;166;230mE0[0m&nbsp;0x[38;2;83;166;230mF0[0m&nbsp;0x[38;2;83;166;230m75[0m&nbsp;BREAK_UP_ARROW
+
+[38;2;150;203;89mPS2>[0m&nbsp;]
+
+
+keyboard&nbsp;released
+[38;2;150;203;89mPS2>[0m
