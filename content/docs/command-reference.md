@@ -664,7 +664,7 @@ The Bus Pirate has two USB serial ports.
 "binmode" supports a variety of protocols and software. 
 
 - [SUMP logic analyzer protocol]({{% relref "/docs/binmode-reference/protocol-sump/"%}}) for [sigrok/PulseView]({{% relref "/docs/logic-analyzer/pulseview-sump/" %}})
-- [Binmode test framework](https://forum.buspirate.com/t/bbio2-binary-mode/219/10?u=ian)
+- [BPIO2 flatbuffer interface]({{% relref "/docs/binmode-reference/protocol-bpio2/" %}}) for scripts, libraries and [AsProgrammer dregmod]({{% relref "/docs/software/asprogrammer-dregmod/" %}})
 - Arduino CH32V003 SWIO
 - [Follow Along Logic Analyzer protocol]({{% relref "http://localhost:1313/docs/binmode-reference/protocol-faladata/" %}}) for [sigrok/PulseView]({{% relref "/docs/logic-analyzer/pulseview-fala/" %}})
 - [Legacy Binary Mode]({{% relref "/docs/binmode-reference/protocol-spi-legacy/" %}}) for [Flashrom]({{% relref "/docs/software/flashrom/" %}}) and [AVRdude]({{% relref "/docs/software/avrdude/"%}})
@@ -713,6 +713,12 @@ See the [AnalysIR guide]({{% relref "/docs/software/analysir/" %}}) for the full
 ![](/images/docs/fw/bpv3-unbrick-setup.jpg)
 
 The Bus Pirate writes the bootloader of a Bus Pirate v3 with a blank or broken flash through its ICSP header, so the Bus Pirate v3 can load firmware over USB again. [Bus Pirate v3 Unbrick]({{% relref "/docs/software/bus-pirate-v3-unbrick/" %}}) has the wiring and the steps.
+
+### **AsProgrammer** flash programmer
+
+![](/images/docs/fw/asprogrammer-spi-read-done.png)
+
+AsProgrammer dregmod reads, writes, erases and verifies SPI flash and I2C EEPROM chips from Windows, through the BPIO2 binmode. See the [AsProgrammer dregmod guide]({{% relref "/docs/software/asprogrammer-dregmod/" %}}) for the setup.
 
 
 ## Scripting commands
