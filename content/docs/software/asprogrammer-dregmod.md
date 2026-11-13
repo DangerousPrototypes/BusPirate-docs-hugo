@@ -60,7 +60,7 @@ In the Bus Pirate terminal use the ```binmode``` command and choose **BPIO2 flat
 
    ![](/images/docs/fw/asprogrammer-bpio2-com-port.png)
 
-3. In the same menu, set **Voltage** to the voltage of your chip: 1.8, 2.5, 3.3 or 5.0 volts.
+3. In the same menu, set **Voltage** to the voltage of your chip.
 
    ![](/images/docs/fw/asprogrammer-voltage-menu.png)
 
@@ -80,7 +80,9 @@ In the Bus Pirate terminal use the ```binmode``` command and choose **BPIO2 flat
 
    ![](/images/docs/fw/asprogrammer-i2c-clock-menu.png)
 
-Two more commands in the same menu:
+Three more commands in the same menu:
+
+- **Show pin labels** labels the pins of the bus you picked, SPI or I2C, on the Bus Pirate's screen, so you can see where each wire goes. It turns off the power supply and the pull-up resistors while you wire, and the next operation sets them again as the menu says.
 
 - **Device info / voltages** shows the Bus Pirate model, its firmware, and the power supply settings and measurements. It doesn't turn the power supply on, so it's a safe first check.
 
@@ -114,7 +116,7 @@ The toolbar buttons have no labels: hold the pointer over one to see its name.
 
 Buttons 4, 6 and 8 have a small arrow on their right. Click the arrow, not the button, for more commands:
 
-- **Program IC**: its menu has one command. It asks once, then runs **Unprotect**, **Erase IC**, **Program IC** and **Verify IC** in a row.
+- **Program IC**: its menu has one command. It asks once, then runs **Unprotect**, **Erase IC**, **Program IC** and **Verify IC** in a row. It stops if you click **Cancel** or the erase ends with an error. If an I2C EEPROM refuses only some pages, it goes on and programs the pages the chip takes.
 
   ![](/images/docs/fw/asprogrammer-program-ic-menu.png)
 
